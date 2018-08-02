@@ -1,0 +1,2327 @@
+Boas Práticas para Dados na Web		
+Recomendação do W3C de 31 de janeiro de 2017		
+		
+Esta versão:		
+https://www.w3.org/TR/2017/REC-dwbp-20170131/		
+		
+Última versão publicada:		
+https://www.w3.org/TR/dwbp/		
+		
+Última versão do editor:		
+http://w3c.github.io/dwbp/bp.html		
+		
+Relatório de Implementação:		
+http://w3c.github.io/dwbp/dwbp-implementation-report.html		
+		
+Versão Anterior:		
+https://www.w3.org/TR/2016/PR-dwbp-20161215/		
+		
+Editores:		
+Bernadette Farias Lóscio, CIn - UFPE, Brazil		
+Caroline Burle, NIC.br, Brazil		
+Newton Calegari, NIC.br, Brazil		
+		
+Colaboradores:		
+Annette Greiner		
+Antoine Isaac		
+Carlos Iglesias		
+Carlos Laufer		
+Christophe Guéretg		
+Deirdre Lee		
+Doug Schepers		
+Eric G. Stephan		
+Eric Kauz		
+Ghislain A. Atemezing		
+Hadley Beeman		
+Ig Ibert Bittencourt		
+João Paulo Almeida		
+Makx Dekkers		
+Peter Winstanley		
+Phil Archer		
+Riccardo Albertoni		
+Sumit Purohit		
+Yasodara Córdova		
+		
+Modificações:		
+Histórico de Modificações		
+Diferença para a versão anterior		
+Verifique a errata para quaisquer erros ou problemas reportados a partir da publicação.		
+A versão em inglês desta especificação é a única versão normativa. Traduções não normativas também podem estar disponíveis.		
+Copyright © 2017 W3C® (MIT, ERCIM, Keio, Beihang). São aplicáveis as  regras de responsabilidade, marca registrada e uso de documento do W3C.		
+		
+Abstract		
+Este documento apresenta as Boas Práticas relacionadas à publicação e ao uso de dados na Web, designados para oferecer suporte a um ecossistema autossustentável. Dados devem ser encontráveis e compreensíveis por humanos e máquinas. Em qualquer circunstância em que os dados sejam utilizados de uma determinada maneira, seja pelo criador original dos dados ou por uma parte externa, tal utilização deve  também ser encontrável  e os esforços do editor dos dados devem ser reconhecidos. Ou seja, o respeito a estas Boas Práticas facilitará a interação entre publicadores e consumidores.		
+		
+Status deste Documento		
+Esta seção descreve o status deste documento no momento de sua publicação. Outros documentos podem substituí-lo. Uma listagem das publicações atualizadas do W3C assim como a última revisão deste relatório técnico podem ser encontradas no W3C technical reports index em https://www.w3.org/TR/.		
+O Grupo de Trabalho Boas Práticas para Dados na Web foi criado para desenvolver o ecossistema de dados abertos de maneira a facilitar uma comunicação mais qualificada entre os desenvolvedores e os publicadores. Da mesma forma o Grupo de Trabalho também visa orientar os publicadores que irão aperfeiçoar a consistência do gerenciamento de dados e, portanto, promover a reutilização de dados, além de nutrir a confiança nos dados entre os desenvolvedores, seja qual for a tecnologia que estes escolham utilizar, potencializando inovações genuínas. Este documento de boas práticas é complementado pelos vocabulários Qualidade de Dados e Uso de Dados.		
+Este documento foi publicado pelo Grupo de Trabalho Boas Práticas para Dados na Web como uma Recomendação. Caso haja interesse em enviar comentários sobre este documento favor enviá-los para public-dwbp-comments@w3.org (assinatura, arquivos). Todos os comentários são bem-vindos. Favor consultar o relatório de implementação do Grupo de Trabalho.		
+Este documento foi revisado pelos Membros do W3C, por desenvolvedores de software além de outros grupos e partes interessadas do W3C; e foi endossado pelo Diretor como uma Recomendação do W3C. É um documento estável e pode ser utilizado como material de referência e citado em outro documento. O papel do W3C ao emitir uma Recomendação é chamar atenção à especificação e promover sua ampla implantação. Isto aperfeiçoa a funcionalidade e a interoperabilidade da Web.		
+		
+Este documento foi produzido por um grupo operando em conformidade com a Política de Patentes do W3C de 5 de fevereiro de 2004. O W3C mantém uma lista pública de todas divulgações de patentes realizadas em conexão com os trabalhos entregues pelo grupo, e tal página também contém as instruções para divulgação de patentes.. Um indivíduo que tenha conhecimento de uma patente que acredite conter Reivindicações Essenciais deverá divulgar as informações de acordo com a seção 6 da Política de Patentes do W3C.		
+		
+Este documento é regido pelo Documento Processual de 1º  de setembro de 2015 do W3C.		
+		
+ÍNDICE		
+1. Introdução		
+2. Público 		
+3. Escopo		
+4. Contexto		
+5. Espaços de Nome		
+6. Modelo de Boas Práticas		
+7. Sumário de Boas Práticas		
+8. As Boas Práticas		
+8.1 Exemplo de Execução		
+8.2 Metadados		
+8.3 Licenciamento de Dados		
+8.4 Proveniência de Dados		
+8.5 Qualidade de Dados		
+8.6 Versionamento de Dados		
+8.7 Identificadores de Dados		
+8.8 Formatos de Dados		
+8.9 Vocabulários de Dados		
+8.10 Acesso de Dados		
+8.10.1 APIs de Acesso de Dados		
+8.11 Preservação de Dados		
+8.12 Feedback		
+8.13 Enriquecimento de Dados		
+8.14 Republicação		
+9. Glossário		
+10. Desafios para Dados nasobre os Desafios da Web		
+11. Benefícios das Boas Práticas		
+12. Requisitos de Casos de Uso x Boas Práticas		
+A. Agradecimentos		
+B. Histórico de Modificações		
+C. Referências		
+C.1 Referências Informativas 		
+		
+1.Introdução		
+Esta seção não é normativa.		
+		
+As Boas Práticas abaixo descritas foram desenvolvidas com o objetivo de estimular e possibilitar a expansão da Web como um ambiente para a troca de dados. O crescimento do compartilhamento de dados abertos online por parte de governos de todo o mundo [OKFN-INDEX] [ODB], a crescente publicação online de dados de pesquisa encorajada por organizações tais como a Aliança por Dados de Pesquisa (RDA), a coleta, análise e publicação online de dados de mídias sociais, crowdsourcing de informações, a progressiva presença na Web de coleções de importante patrimônio cultural, tais como o acervo da Biblioteca Nacional da França (BNF) e o crescimento sustentado na Nuvem de Dados Abertos Conectados [LODC] são alguns dos exemplos desse crescimento no uso da Web para a publicação de dados.		
+No entanto, em termos de estilo esse crescimento não é consistente e em muitos casos não faz pleno uso do potencial e da habilidade da Plataforma Aberta da Web para estabelecer conexões entre fatos, descobrir recursos relacionados e criar visualizações interativas. 		
+Em termos gerais os publicadores de dados visam compartilhar dados, seja de forma aberta ou por meio de acesso controlado. Por sua vez, os consumidores de dados (que também podem eles mesmos ser produtores) querem ser capazes de encontrar, usar e conectar-se aos dados - especialmente se estes forem precisos, regularmente atualizados  e contem com disponibilidade garantida a qualquer momento. Isto produz uma necessidade crucial de alcançar um entendimento comum entre os publicadores e os consumidores de dados. Sem tal concordância, os esforços dos editores de dados podem tornar-se incompatíveis com os desejos dos consumidores de dados. 		
+A abertura e flexibilidade da Web cria novos desafios tanto para os publicadores quanto para os consumidores de dados tais como:de que modo representar, descrever e disponibilizar dados de forma que seja fácil encontrar e compreendê-los. Diferentemente de bases de dados convencionais, por exemplo, onde há um único modelo de dados para representá-los e um sistema de gerenciamento de base de dados (DBMS) para controlar o acesso aos dados, os dados na Web levam em conta a existência de múltiplas formas para representar e acessar dados. Para maiores detalhes sobre os desafios veja a seção Desafios para Dados na sobre os Desafios da Web.		
+Neste contexto torna-se fundamental orientar os publicadores que irão aprimorar a consistência na forma como os dados são administrados. Tais orientações irão estimular a reutilização dos dados, além de promover entre os desenvolvedores a confiança em tais dados - seja qual for a tecnologia que estes escolham - incrementando o potencial para  inovações genuínas.		
+Entretanto, nem todos os dados devem ser compartilhados abertamente. A segurança, a sensibilidade comercial e, acima de tudo, a privacidade dos indivíduos devem ser levadas em consideração. Cabe aos publicadores editores de dados determinar as políticas por meio das quais os dados devem ser compartilhados - e sob que circunstâncias. É provável que as políticas de compartilhamento de dados avaliem o risco de exposição e determinem as medidas de segurança apropriadas a serem adotadas para a proteção de dados sensíveis, tais como a autenticação segura e a autorização. 		
+Dependendo das circunstâncias, as informações sensíveis sobre os indivíduos podem incluir nome completo, endereço residencial, endereço eletrônico, número de identificação nacional, endereço de IP, número de registro de veículo, número de carteira de motorista, rosto, impressões digitais ou de caligrafia, números de cartão de crédito, identidade digital, local de nascimento, informação genética, número de telefone, nomes de login, nome de tela, apelido, históricos de saúde, etc. Embora seja provável que compartilhar algumas destas informações abertamente seja seguro, é mais seguro ainda fazê-lo em ambientes controlados. Os publicadores devem ter em mente que a combinação de dados provenientes de múltiplas fontes pode permitir a identificação inadvertida de indivíduos.		
+Uma Boa Prática genérica para a publicação de dados na Web é o uso de padrões. Diferentes tipos de organizações especificam padrões que são particularmente dirigidos à publicação de conjuntos de dados relacionados a domínios e aplicações específicos, envolvendo comunidades de usuários interessados nesses dados. Estes padrões definem uma forma comum de comunicar informação entre os usuários destas comunidades. Por exemplo, existem dois padrões que podem ser utilizados para publicar horários de transporte público: a Especificação Geral sobre Feeds de Transporte [GTFS] e a Interface de Serviços para Informações em Tempo Real [SIRI]. Tais padrões especificam de maneira inter-relacionada termos padronizados, formatos de dados padronizados e a acesso padronizado a dados. Outra Boa Prática genérica é a utilização do Unicode no trato dos caracteres e dos dados em string. O Unicode aprimora o processamento de texto multilíngue e facilita a localização de software.		
+As Boas Práticas abarcam diferentes aspectos relacionados à publicação e ao consumo de dados, como formatos de dados, acesso de dados, identificadores de dados e metadados. Com a intenção de delimitar o escopo e obterelicitar as características necessárias para a elaboração de Dados sobre as Boas Práticas na Web, o grupo de trabalho DBPW compilou uma série de casos de uso [DWBP-UCR] que representam cenários sobre como os dados são comumente publicados na Web e como são utilizados. Esta série de requisitos derivada dos casos de uso foi utilizada para orientar o desenvolvimento das Boas Práticas que independem do domínio e da aplicação. No entanto, elas podem ser estendidas ou complementadas por outros documentos ou padrões de Boas Práticas que tratem de contextos mais específicos. No que diz respeito aos vocabulários, por exemplo, as Boas Práticas para a Publicação de Dados Conectados [LD-BP] do W3C são uma referência útil. Existem recomendações específicas para expressar licenciamentos, outras permissões e declarações de obrigações em ODRL [ODRL- model], um conjunto de padrões relacionados a proveniência [PROV-Overview] e as Boas Práticas aqui apresentadas foram estendidas para abarcar orientações mais específicas acerca da encontrabilidade, acessibilidade e interoperabilidade de dados espaciais e temporais pelas Boas Práticas para Dados Espaciais na Web [SDW-BP].		
+Mesmo que o DBPW recomende o uso de Dados Conectados, este também promove boas práticas para dados na Web em outros formatos abertos tais como o CSV.  Métodos para o compartilhamento de dados tabulares, inclusive arquivos CSV, de modo a maximizar o potencial da Web para estabelecer links entre pontos de dados, são descritos no Primer de Dados Tabulares [Tabular-Data-Primer].		
+Com o objetivo de estimularencorajar os publicadores de dados a adotarem o DBPW, uma série de Benefícios distintos foram identificados: entendimento, processabilidade, encontrabilidade, reutilização, confiança, conectividade, acesso; e interoperabilidade. Tais Benefícios foram descritos e relacionados às Boas Práticas na seção Benefícios das Boas Práticas.		
+		
+2. Público		
+Esta seção não é normativa.		
+		
+O presente documento estabelece as Boas Práticas primariamente dirigidas àqueles que publicam dados na Web. As Boas Práticas são elaboradas para vir ao encontro das necessidades dos times de gerenciamento de informações, desenvolvedores, além de grupos mais amplos, tais como cientistas que estejam interessados em compartilhar e reutilizar dados de pesquisa na Web. Mesmo que os publicadores de dados sejam o nosso público primário, encorajamos todos os envolvidos em atividades correlatas a familiarizar-se com o tema. Realizamos todos os esforços possíveis no sentido de tornar esse documento legível e utilizável - mantendo a precisão e a clareza que uma especificação técnica demanda. 		
+Espera-se que os leitores deste documento estejam familiarizados com alguns conceitos fundamentais da arquitetura da Web [WEBARCH], tais como os recursos e os URIs, assim como com uma série de formatos de dados. O elemento normativo de cada Boa Prática é o resultado pretendido. Algumas implementações possíveis também são sugeridas e, quando apropriado, tais implementações recomendam a utilização de uma tecnologia específica. Um conhecimento básico de vocabulários e modelos de dados seria útil para entender melhor alguns aspectos deste documento.		
+		
+3.Escopo		
+Essa seção não é normativa.		
+		
+Este documento trata somente de Boas Práticas que:		
+sejam especificamente relevantes para os dados publicados na Web;		
+incentivem a publicação ou reutilização de dados na Web;		
+possam ser testadas por máquinas, humanos ou por uma combinação de ambos.		
+Conforme mencionado acima, se uma Boa Prática foi ou não seguida, a mesma deve ser julgada sob a luz do resultado pretendido e não sob a perspectiva da possível abordagem à implantação - que é oferecida como orientação. Uma Boa Prática está sempre sujeita à melhoramentos, uma vez que juntos aprendemos e desenvolvemos a Web.		
+		
+4.Contexto		
+Esta seção não é normativa.		
+O diagrama a seguir ilustra o contexto levado em consideração neste documento. Em geral, as Boas Práticas propostas para a publicação e o uso de Dados na Web tratam de conjuntos de dados e distribuições. Os dados são publicados em diversas distribuições que são a forma física específica de um conjunto de dados. Quando nos referimos à dados “queremos dizer: fatos conhecidos que podem ser registrados e que possuem significado implícito” [Navathe]. Tais distribuições facilitam o compartilhamento de dados em larga escala, o que viabiliza que conjuntos de dados sejam utilizados por diversos grupos de consumidores de dados, independentemente do propósito, público, interesse ou licença. Considerando a heterogeneidade e o fato de que os editores e consumidores de dados possam não se conhecer, faz-se necessário o fornecimento de algumas informações sobre os conjuntos de dados e as distribuições, de forma a promover a confiabilidade e a reutilização; tais como: metadados estruturais, metadados descritivos, informações de acesso, informações de qualidade de dados, informações de proveniência, informações de licença e informações de uso.		
+		
+Um aspecto importante da publicação e compartilhamento de dados na Web diz respeito à base arquitetônica da Web (WEBARCH). Um aspecto relevante desse fato é o princípio de identificação que diz que os URIs devem ser utilizados para identificar recursos. No nosso contexto um recurso pode ser um conjunto de dados completo ou um item específico de um determinado conjunto de dados. Todos os recursos devem ser publicados com URIs estáveis, de forma a que possam ser referenciados e compor conexões, por meio de URIs, entre dois ou mais recursos. Por último, para promover a interoperabilidade entre os conjuntos de dados, é importante adotar vocabulários de dados e padrões.		
+		
+<DIAGRAMA DATASETS>		
+		
+5.Espaços de Nome		
+Essa seção não é normativa.		
+Os seguintes prefixos de espaços de nomes são utilizados ao longo de todo este documento.		
+		
+Prefixo	Espaço de Nome IRI	Descrição
+dcat	http://www.w3.org/ns/dcat#	Data Catalog Vocabulary (DCAT)
+dct	http://purl.org/dc/terms/	Dublin Core Metadata Initiative (DCMI) Metadata Terms
+dqv	http://www.w3.org/ns/dqv#	DWBP Data Quality Vocabulary (DQV)
+duv	http://www.w3.org/ns/duv#	DWBP Dataset Usage Vocabulary (DUV)
+foaf	http://xmlns.com/foaf/0.1/	Friend of a Friend (FOAF) Vocabulary
+oa	http://www.w3.org/ns/oa#	Web Annotation Ontology
+owl	http://www.w3.org/2002/07/owl#	Web Ontology Language (OWL)
+pav	http://pav-ontology.github.io/pav/	Provenance, Authoring and Versioning (PAV)
+prov	http://www.w3.org/ns/prov#	Provenance Ontology (PROV)
+rdf	http://www.w3.org/1999/02/22-rdf-syntax-ns#	Resource Description Framework (RDF)
+rdfs	http://www.w3.org/2000/01/rdf-schema#	RDF Schema vocabulary (RDFS)
+skos	http://www.w3.org/2004/02/skos/core#	Simple Knowledge Organization System (SKOS)
+Espaços de Nome utilizados no documento		
+		
+6. Modelo de Boas Práticas		
+Esta seção apresenta o modelo utilizado para descrever Dados sobre Boas Práticas na Web.		
+		
+Modelo de Boa Prática		
+Breve descrição da BP		
+		
+Por que		
+Essa seção responde a duas perguntas cruciais:		
+Por que este tema é especificamente relevante para a publicação ou para a reutilização de dados na Web?		
+Como esta iniciativa encoraja a publicação ou a reutilização de dados na Web?		
+		
+Um texto com a descrição completa do problema abordado pela Boa Prática também pode ser fornecido. Tal texto pode ser de qualquer extensão, mas é provável que não tenha mais que algumas sentenças.		
+		
+Resultado Pretendido		
+O que deveria ser possível alcançar quando um editor de dados segue as Boas Práticas.		
+		
+Sugestão de uma Possível Abordagem para a Implementação		
+Fornecemos uma descrição de uma possível estratégia de implementação. Esta representa a melhor recomendação disponível no momento em que este documento foi escrito, mas circunstâncias específicas e desenvolvimentos futuros poderão denotar que métodos alternativos de implementação sejam mais apropriados para se obter o resultado pretendido.		
+		
+Como Testar		
+Informações sobre como testar a BP foram cumpridas. Estas podem ou não ser testáveis por máquinas.		
+		
+Evidência		
+Informações sobre a relevância da BP. Esta se encontra descrita por um ou mais requisitos relevantes, tal qual registrado no documento Dados sobre Requisitos e Casos de Uso das Boas Práticas na Web [DWBP-UCR]. 		
+		
+Benefícios		
+Um benefício representa uma melhoria na forma pela qual os conjuntos de dados são disponibilizados na Web. Uma Boa Prática pode ter um ou mais Benefícios.		
+This section exists simply to put the example at the same level in the doc outline as the actual BPs		
+		
+7. Sumário de Boas Práticas		
+Boa Prática 1: Fornecer metadados		
+Boa Prática 2: Fornecer metadados descritivos		
+Boa Prática 3: Fornecer metadados estruturais		
+Boa Prática 4: Fornecer informações de licenciamento de dados		
+Boa Prática 5: Fornecer informações sobre a proveniência dos dados		
+Boa Prática 6: Fornecer informações sobre a qualidade dos dados		
+Boa Prática 7: Fornecer um indicador de versão		
+Boa Prática 8: Fornecer histórico de versão		
+Boa Prática 9: Utilizar URIs constantes como identificadores de conjuntos de dados		
+Boa Prática 10: Utilizar URIs constantes como identificadores dentro dos conjuntos de dados 		
+Boa Prática 11: Designar URIs para versões e séries de conjuntos de dados 		
+Boa Prática 12: Utilizar formatos de dados padronizados e inteligíveis por máquinas		
+Boa Prática 13: Utilizar representações de dados de localidade neutra		
+Boa Prática 14: Fornecer dados em formatos múltiplos		
+Boa Prática 15: Reutilizar vocabulários preferencialmente padronizados		
+Boa Prática 16: Escolher o nível correto de formalização 		
+Boa Prática 17: Fornecer download em massa		
+Boa Prática 18: Fornecer subconjuntos para conjuntos de dados extensos		
+Boa Prática 19: Utilizar a negociação de conteúdo para disponibilizar dados em formatos múltiplos		
+Boa Prática 20: Fornecer acesso em tempo real		
+Boa Prática 21: Fornecer dados atualizados		
+Boa Prática 22: Fornecer uma justificativa para dados não disponíveis		
+Boa Prática 23: Disponibilizar dados por meio de uma API		
+Boa Prática 24: Utilizar padrões da Web como a base para as APIs		
+Boa Prática 25: Fornecer a documentação completa para sua API		
+Boa Prática 26: Evitar modificações que quebrem sua API		
+Boa Prática 27: Preservar os identificadores		
+Boa Prática 28: Avaliar a cobertura do conjunto de dados		
+Boa Prática 29: Coletar feedback de consumidores de dados		
+Boa Prática 30: Disponibilizar feedback		
+Boa Prática 31: Enriquecer dados por meio da geração de novos dados		
+Boa Prática 32: Fornecer apresentações complementares		
+Boa Prática 33: Fornecer feedback ao editor original		
+Boa Prática 34: Seguir os termos de licenciamento		
+Boa Prática 35: Citar a publicação original		
+		
+8. As Boas Práticas		
+Esta seção contém as Boas Práticas a serem utilizadas por publicadores de dados para auxiliar tanto estes quanto aos consumidores de dados a superarem os diferentes desafios enfrentados ao se publicar e consumir dados na Web. Para cada um dos desafios, uma ou mais Boas Práticas foram propostas conforme descritas na seção Dados sobre os Desafios da Web.		
+Cada BP é relacionada a um ou mais requisitos provenientes do documento Dados sobre Requisitos e Casos de Uso das Boas Práticas na Web [DWBP-UCR], que serviu de guia para o seu desenvolvimento. Cada Boa Prática apresenta pelo menos um destes requisitos como prova de sua relevância. 		
+		
+8.1 Exemplo de Execução		
+Adrian trabalha para a Agência de Transportes MyCity e é responsável pela publicação de dados sobre transporte público. Adrian quer publicar esses dados para diferentes tipos de consumidores de dados, tais como desenvolvedores interessados em criar aplicações e também para agentes de software. É importante que tanto humanos quanto agentes de software possam facilmente compreender e processar os dados, que por sua vez devem ser mantidos atualizados e facilmente encontráveis na Web.		
+Exemplos em RDF da aplicação de algumas Boas Práticas são demonstrados utilizando Turtle [Turtle] ou JSON-LD [JSON-LD].		
+		
+8.2 Metadados		
+A Web é um espaço aberto  de informações, onde a ausência de um contexto específico, tal como o sistema de informações interno de uma empresa, significa que a provisão de metadados é um requisito fundamental. Os dados não serão encontráveis ou reutilizáveis por ninguém além do próprio editor, caso a provisão de metadados seja insuficiente. Os metadados proveem informações adicionais que auxiliam os consumidores de dados a compreender melhor o significado dos dados e sua estrutura, além de clarificar outros temas, tais como direitos e termos de licenciamento, a organização que gerou os dados, a qualidade dos dados, os métodos de acesso aos dados e o agendamento da atualização dos conjuntos de dados. Os publicadores são incentivados a fornecer informações que sejam inteligíveis por humanos em diversos idiomas e, na medida do possível, oferecer as informações por meio de uma linguagem (ou linguagens) que os usuários possam compreender. 		
+Os metadados podem ser utilizados para auxiliar na realização de tarefas tais como a descoberta e reutilização de conjuntos de dados, e podem ser designados de forma a considerar diferentes níveis de granularidade; desde uma propriedade singular de um recurso até um conjunto de dados completo, ou até mesmo todos os conjuntos de dados de uma organização específica. Os metadados também podem ser de diversos tipos. Estes tipos podem ser classificados em taxonomias diferentes, seguindo diferentes critérios de agrupamento. Por exemplo, uma taxonomia específica poderia definir três tipos de metadados de acordo com características descritivas, estruturais e administrativas. Uma taxonomia diferente poderia, por sua vez, definir tipos de metadados com uma esquema de acordo com as tarefas nas quais os metadados são utilizados, como por exemplo, a descoberta e reutilização.   		
+		
+Boa Prática 1: Fornecer metadados		
+Fornecer metadados tanto para usuários humanos quanto para aplicações de computadores.		
+Por que		
+Fornecer metadados é um requisito fundamental na publicação de dados na Web, porque os publicadores de dados e os consumidores de dados podem não se conhecer mutuamente. Portanto, é essencial fornecer informações que auxiliem usuários humanos e aplicações de computadores a compreenderem os dados, assim como outros aspectos importantes que descrevam o conjunto de dados ou a distribuição.		
+Resultado EsperadoPretendido		
+Os humanos serão capazes de compreender os metadados e as aplicações de computadores, especialmente agentes de usuários, serão capazes de processá-los.		
+		
+Possível Abordagem para a Implementação		
+Abordagens possíveis para fornecer metadados legíveis por humanos:		
+fornecer metadados como parte de uma página Web HTML		
+fornecer metadados como um arquivo de texto em separado		
+		
+Possíveis abordagens para o fornecimento de metadados inteligíveis por máquina:		
+metadados inteligíveis por máquinas podem ser fornecidos em um formato seriado, tal como o Turtle ou o JSON, ou podem ser incorporados na página de HTML utilizando [HTML-RDFA] ou [JSON-LD]. Caso múltiplos formatos forem publicados separadamente, devem ser fornecidos a partir do mesmo URL por meio de negociação de conteúdo e disponibilizados sob URIs em separado, distintos pelo nome de extensão do arquivo. A manutenção de múltiplos formatos é mais facilmente alcançada por meio da geração de cada formato disponível on-the-fly, com base em uma única fonte de metadados.		
+ao definir os metadados inteligíveis por máquinas, recomenda-se fortemente reutilizar termos de padrões e vocabulários populares já existentes. Por exemplo, nos termos [DCTERMS] Dublin Core Metadata (DCMI) , e no Vocabulário de Catálogo de Dados [VOCAB-DCAT] podem ser utilizados para fornecer metadados descritivos. Tais vocabulários foram projetados para ser extremamente flexíveis, e portanto é frequentemente útil utilizar um perfil específico ou um vocabulário tal qual o (DCAT-AP) da Comissão Europeia.		
+		
+EXEMPLO 1		
+		
+Dados inteligíveis por humanos		
+Página de exemplo apresentando uma descrição inteligível por humanos de um conjunto de dados disponível.		
+		
+Inteligível por máquina		
+Arquivo de exemplo apresentando uma descrição inteligível por máquina de um conjunto de dados disponível.		
+		
+Como testar		
+Verifique se os metadados inteligíveis por humanos estão disponíveis.		
+Verifique se os metadados estão disponíveis em um formato válido inteligível por máquina e sem erros de sintaxe. 		
+		
+Evidências		
+Requisitos relevantes: R-MetadataAvailable, R-MetadataDocum, R-MetadataMachineRead		
+		
+Benefícios		
+R- Reutilização		
+C - Compreensão		
+D - DescobertaEncontrabilidade		
+P- Processabilidade		
+		
+Boa Prática 2: Fornecer metadados descritivos		
+Fornecer metadados que descrevam as características gerais dos conjuntos de dados e das distribuições. 		
+		
+Por que		
+Fornecer explicitamente informações descritivas de conjuntos de dados possibilita que os agentes usuários descubram automaticamente conjuntos de dados disponíveis na Web; e isto viabiliza que humanos compreendam a natureza do conjunto de dados e suas distribuições.  		
+Resultado Pretendido		
+Os humanos serão capazes de interpretar a natureza do conjunto de dados e suas distribuições, e os agentes de software poderão automaticamente descobrir conjuntos de dados e distribuições.		
+Possível abordagem de Implementação		
+Os metadados descritivos podem incluir as seguintes características genéricas de um conjunto de dados:		
+O título e a descrição do conjunto de dados.		
+As palavras-chave que descrevem o conjunto de dados.		
+A data de publicação do conjunto de dados.		
+A entidade responsável (editor) por disponibilizar o conjunto de dados.		
+O ponto de contato para o conjunto de dados.		
+A cobertura espacial do conjunto de dados.		
+O período temporal coberto pelo conjunto de dados.		
+A data da última modificação do conjunto de dados.		
+Os temas/categorias cobertos por um conjunto de dados.		
+		
+Os metadados descritivos podem incluir as seguintes características genéricas de uma distribuição:		
+O título e a descrição da distribuição.		
+A data da publicação da distribuição.		
+O formato de mídia da distribuição.		
+		
+A versão inteligível por máquina dos metadados descritivos pode ser disponibilizada utilizando o vocabulário recomendado pelo W3C para descrever conjuntos de dados; por exemplo, o Vocabulário de Catálogo de Dados (VOCAB-DCAT). Essa ação estabelece um marco no qual os conjuntos de dados podem ser descritos como entidades abstratas.		
+		
+EXEMPLO 2		
+Inteligível por máquina		
+O exemplo abaixo demonstra como utilizar [VOCAB-DCAT] para fornecer metadados de descoberta inteligíveis por máquina para o conjunto de dados dos pontos de ônibus (stops-2015-05-05). O conjunto de dados possui uma distribuição CSV (stops-2015-05-05.csv) que também é descrita utilizando o (VOCAB-DCAT). O conjunto de dados é então classificado sob o domínio representado pela mobilidade URI relativa. Este domínio pode ser definido como parte de um conjunto de domínios identificado pelos temas URI. Para descrever tanto o conceito quanto o esquema de conceitos, Adrian utilizou SKOS. Para expressar a frequência de atualização foi usada uma instância do Content-Oriented Guidelines desenvolvida como parte dos esforços do Vocabulário do Cubo de Dados do W3C. Adrian escolheu descrever as coberturas espacial e temporal do conjunto de dados do exemplo utilizando URIs do Geonames e  o Time Intervals dataset do data.gov.uk, respectivamente.		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Inteligível por humanos		
+Página de exemplo disponibilizada com a descrição do conjunto de dados inteligível por humanos 		
+Como testar		
+Verifique se os metadados para o conjunto de dados em si inclui as características genéricas do conjunto de dados em formato inteligível por humanos.		
+Verifique se os metadados descritivos estão disponíveis em um formato válido inteligível por máquina.		
+Evidência		
+Requisitos relevantes: R-MetadataAvailable, R-MetadataMachineRead, R-MetadataStandardized		
+		
+Benefícios		
+R - Reutilização		
+C - Compreensão		
+D - Encontrabilidade		
+		
+Boa Prática 3: Fornecer metadados estruturais		
+Fornecer metadados que descrevam o esquema e a estrutura interna de uma distribuição. 		
+Por que		
+Fornecer informações sobre a estrutura interna de uma distribuição é fundamental para outros que desejem explorar ou consultar o conjunto de dados. Também auxilia as pessoas a compreender o significado dos dados.		
+		
+Resultado Pretendido		
+Os humanos serão capazes de interpretar o esquema de um conjunto de dados e os agentes de software serão capazes de processar as distribuições automaticamente.		
+Possível Abordagem de Implementação		
+Os metadados estruturais inteligíveis por humanos geralmente fornecem as propriedades ou as colunas do esquema do conjunto de dados.		
+Os metadados estruturais inteligíveis por máquina são disponibilizados de acordo com o formato de uma distribuição específica e podem ser fornecidos dentro de documentos em separado ou incorporados ao documento. Para maiores detalhes, acesse os links abaixo:		
+Dados Tabulares: acesse Model for Tabular Data and Metadata on the Web		
+JSON-LD: acesse JSON-LD 1.0		
+XML: acesse XML Schema		
+Dados multidimensionais: acesse Cubo de Dados		
+		
+EXEMPLO 3		
+Inteligível por máquina		
+Adrian utilizou o Modelo para Dados Tabulares e Metadados na Web para a publicação da distribuição CSV para o conjunto de dados de pontos de ônibus (stops-2015-05-05.cvs). O exemplo abaixo apresenta os metadados estruturais para essa distribuição. 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+inteligível por humanos		
+Página de exemplo disponibilizada com a descrição do conjunto de dados inteligível por humanos 		
+		
+Como testar		
+Verifique se os metadados estruturais estão disponibilizados em um formato inteligível por humanos.		
+Verifique se os metadados da distribuição incluem as informações estruturais sobre o conjunto de dados em um formato inteligível por máquina e sem apresentar erros de sintaxe.		
+		
+Evidências		
+Requisitos relevantes: R-MetadataAvailable		
+		
+Benefícios		
+R - Reutilização		
+C - Compreensão		
+P - Processabilidade		
+		
+8.3 Licenciamento de Dados		
+O licenciamento é uma peça de informação muito útil e deve ser anexada aos dados na Web. Dependendo do tipo de licenciamento adotado pelo editor, pode haver mais ou menos restrições no que diz respeito ao compartilhamento e à reutilização dos dados. No contexto dos dados na Web, o licenciamento de um conjunto de dados pode ser especificado dentro dos metadados, ou fora dos mesmos, em um documento em separado ao qual esteja conectado.		
+		
+Boa Prática 4: Fornecer informações de licenciamento de dados		
+Fornecer um link ou uma cópia do acordo de licenciamento que controla a utilização dos dados		
+		
+Por que		
+A presença das informações de licenciamento é fundamental para que os consumidores de dados avaliem a usabilidade dos dados. Os agentes dos usuários podem utilizar a presença/ausência das informações de licenciamento como um gatilho para a inclusão ou exclusão dos dados apresentados a um consumidor em potencial. 		
+		
+Resultados pretendidos		
+Os humanos serão capazes de compreender as informações de licenciamento de dados que descrevem as possíveis restrições impostas ao uso de uma dada distribuição, e os agentes de software poderão detectar automaticamente os dados de licenciamento de uma distribuição.		
+		
+Possível Abordagem para Implementação		
+As informações sobre os dados de licenciamento podem ser disponibilizadas por meio de um link enviado ou uma cópia embutida de um acordo de licenciamento inteligível por humanos.Também podem ser disponibilizadas para processamento por meio de um link enviado ou cópia embutida de um acordo de licenciamento inteligível por máquina..		
+		
+Pode-se utilizar um dos seguintes vocabulários que incluem  propriedades para a adicionar um link de uma licença:		
+Dublin Core [DCTERMS] (dct:license)		
+Creative Commons [CCREL] (cc:license)		
+schema.org [SCHEMA-ORG] (schema:license)		
+XHTML [XHTML-VOCAB] (xhtml:license)		
+Também há a uma série de linguagens de direitos inteligíveis por máquinas que incluem:		
+O Creative Commons Rights Expression Language [CCREL]		
+O Open Digital Rights Language [ODRL-model]		
+O Open Data Rights Statement Vocabulary [ODRS]		
+		
+EXEMPLO 4		
+Inteligível por máquina		
+A distribuição CSV de um conjunto de dados referentes aos pontos de ônibus (stops-2015-05-05.csv) será publicada sob o licenciamento Creative Commons Attribution-ShareAlike 3.0 Unported. O licenciamento proprietário dct.licence é utilizado para incluir esta informação como parte da distribuição dos metadados. Neste caso o licenciamento não é escrito em uma linguagem inteligível por máquinas, porém o licenciamento proprietário dct:licence permite que um agente de software detecte automaticamente o licenciamento de dados de uma dada distribuição.		
+		
+		
+		
+		
+		
+		
+		
+		
+Inteligível por humanos		
+Página de exemplo com as informações de licenciamento de dados inteligível por humanos da distribuição.		
+		
+Como testar		
+Verifique se os metadados para o conjunto de dados em si incluem as informações de licenciamento de dados em um formato inteligível por humanos.		
+Verifique se um agente usuário pode automaticamente detectar ou descobrir o licenciamento de dados do conjunto de dados. 		
+		
+Evidência		
+Casos de uso relevantes:  R-LicenseAvailable, R-MetadataMachineRead, R-LicenseLiability		
+		
+Benefícios		
+R - Reutilização		
+C - Confiabilidade		
+		
+8.4 Proveniência de Dados		
+A Web congrega negócios, engenharia, comunidades científicas e cria oportunidades colaborativas anteriormente inimagináveis. O desafio da publicação de dados na Web é fornecer um nível apropriado de detalhamento sobre sua origem. O produtor de dados pode não ser necessariamente o editor de tais  dados e portanto é particularmente importante coletar e transmitir os metadados correspondentes. Sem a proveniência, os consumidores não possuem nenhum modo inerente de confiar na integridade e credibilidade dos dados que estão sendo compartilhados. Por sua vez, os editores de dados precisam estar cientes das necessidades das potenciais comunidades de consumidores para saber adequar a quantidade dos detalhes de proveniência.		
+		
+Boa Prática 5: Fornecer informações sobre a proveniência dos dados		
+Fornecer informações completas sobre as origens dos dados e de quaisquer alterações que você tenha feito.		
+Por que		
+A proveniência é uma das maneiras por meio das quais os consumidores de um conjunto de dados julgam sua qualidade. Entender sua origem e história auxilia a determinar se o dado é  confiável e fornece um contexto interpretativo importante.		
+Resultado Pretendido		
+Os humanos saberão a origem e o histórico do conjunto de dados e os agentes de software poderão automaticamente processar a informação de proveniência. 		
+Possível Abordagem para Implementação		
+A versão inteligível por máquina da proveniência de dados pode ser disponibilizada por meio de uma ontologia recomendada para descrever informações de proveniência, tais como a Ontologia de Proveniência do W3C [PROV-O].		
+		
+EXEMPLO 5		
+Inteligível por máquina		
+O exemplo abaixo demonstra os metadados inteligíveis por máquina para o conjunto de dados das paradas de ônibus com a inclusão dos metadados de proveniência. As propriedades dct:creator, dct:publisher e dct:issued são utilizadas para fornecer informações sobre a origem do conjunto de dados. A propriedade prov:actedOnBehalfOf é utilizada para designar que Adrian agiu em nome do Departamento de Transportes MyCity.		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Inteligível por humanos		
+Encontra-se disponível uma página de exemplo com informações de proveniência inteligíveis por humanos sobre o conjunto de dados das paradas de ônibus. 		
+Como testar		
+Verifique se os metadados para o conjunto de dados em si incluem informações de proveniência sobre o conjunto de dados em um formato inteligível por humanos. 		
+Verifique se a aplicação do computador pode processar automaticamente as informações sobre a proveniência do conjunto de dados.		
+Evidência		
+Requisitos relevantes: R-ProvAvailable, R-MetadataAvailable		
+Benefícios		
+R - Reutilização		
+C - Compreensão		
+C - Confiabilidade 		
+		
+8.5 Qualidade de Dados		
+A qualidade de um conjunto de dados pode ter um grande impacto na qualidade das aplicações que o utilizam. Como consequência é de fundamental importância a inclusão de informações sobre a qualidade dos dados na publicação de dados e nos pipelines de consumo. Normalmente, a avaliação da qualidade envolve diferentes tipos de dimensões de qualidade, cada qual representando grupos de características que são relevantes para publicadores		
+e consumidores. O Vocabulário de Qualidade de Dados define conceitos tais como as medidas e métricas para avaliação da qualidade de cada dimensão [VOCAB-DQV]. Existem heurísticas projetadas para adequarem-se a situações específicas de avaliação que dependem de indicadores de qualidade, mais especificamente, fragmentos de conteúdos de dados, fragmentos de dados de metainformação, e classificações realizadas por humanos que  forneçam indicadores sobre a aptidão dos dados para alguns dos usos pretendidos. 		
+		
+Boa Prática 6: Fornecer informações sobre a qualidade dos dados		
+Fornecer informações sobre a qualidade dos dados e adequação para propósitos específicos.		
+Por que		
+A qualidade dos dados pode afetar seriamente a adequação dos dados para aplicações específicas, incluindo aplicações bem diferentes do propósito para o qual estas foram originalmente criadas. Documentar a qualidade dos dados facilita significativamente o processo de seleção de conjuntos de dados, aumentando as chances de reutilização dos dados. Independentemente das peculiaridades específicas do domínio, a qualidade dos dados deve ser documentada e os problemas de qualidade conhecidos devem ser explicitamente declarados nos metadados.		
+		
+Resultado Pretendido		
+Humanos e os agentes de software serão capazes de avaliar a qualidade e portanto a adequação de um conjunto de dados para suas aplicações.		
+Possível abordagem para Implementação		
+A versão inteligível por máquina dos metadados de qualidade do conjunto de dados pode ser fornecida utilizando o Vocabulário de Qualidade de Dados desenvolvido pelo grupo de trabalho DBPW  [VOCAB-DQV].		
+		
+EXEMPLO 6		
+Inteligível por máquina		
+O exemplo abaixo demonstra os metadados para a distribuição CSV do conjunto de dados de paradas de ônibus com a inclusão de metadados de qualidade de dados. Os metadados foram definidos de acordo com o Vocabulário de Qualidade de Dados. Mais exemplos podem ser encontrados no documento Vocabulário de Qualidade de Dados [VOCAB-DQV].		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Inteligível por humanos		
+Página de exemplo com informação de qualidade de dados inteligível por humanos		
+Como testar		
+Verifique se os metadados para o conjunto de dados em si incluem informações sobre a qualidade desse determinado conjunto de dados.		
+Verifique se a aplicação do próprio computador pode processar automaticamente as informações sobre a qualidade do conjunto de dados.		
+Evidência		
+Requisitos relevantes: R-QualityMetrics, R-DataMissingIncomplete, R-QualityOpinions		
+		
+Benefícios		
+R - Reutilização		
+C - Confiabilidade		
+		
+8.6 Versionamento de Dados		
+Os conjuntos de dados publicados na Web podem mudar ao longo do tempo. Alguns conjuntos de dados são atualizados regularmente e outros são alterados à medida que melhorias na coleta de dados fazem as atualizações valer a pena. Com o objetivo de lidar com essas mudanças, novas versões de um conjunto de dados podem ser criadas. Infelizmente não há consenso sobre em que momento as alterações a um conjunto de dados devem ser consideradas como um conjunto de dados completamente diferente e não somente uma nova versão. A seguir, apresentamos alguns cenários onde a maioria dos publicadores concordaria que a revisão deve ser considerada uma nova versão de um conjunto de dados já existente.		
+		
+Cenário 1: foi instalada uma nova parada de ônibus que deve ser adicionada ao conjunto de dados;		
+Cenário 2: uma parada de ônibus já existente foi removida e deve ser excluída do conjunto de dados;		
+Cenário 3: foi identificado um erro em uma das paradas de ônibus existentes armazenada no conjunto de dados e este erro deve ser corrigido.		
+		
+Em geral, múltiplos conjuntos de dados que representam séries temporais ou espaciais - por exemplo, o mesmo tipo de dados para diferentes regiões ou para anos diferentes - não são considerados múltiplas versões do mesmo conjunto de dados. Neste caso cada conjunto de dados cobre um conjunto diferente de observações sobre o mundo e deve ser tratado como um novo conjunto de dados. Este também é o caso de um conjunto de dados que coleta dados sobre as previsões meteorológicas semanais para uma determinada cidade, onde toda semana um novo conjunto de dados é criado para armazenar dados sobre aquela semana especificamente.		
+Os Cenários 1 e 2 podem desencadear uma versão majoritária, enquanto que o Cenário 3 provavelmente desencadearia somente uma versão minoritária. No entanto, decidir se as versões devem ser majoritárias ou minoritárias é menos importante do que evitar realizar qualquer alteração sem incrementar o indicador de versão. Até mesmo para pequenas alterações é importante que se mantenha um registro das diferentes versões do conjuntos de dados de forma a tornar o conjunto de dados confiável. Os publicadores devem lembrar que um determinado conjunto de dados pode ser utilizado por um ou mais consumidores de dados e devem tomar medidas sensatas para informar os consumidores quando uma nova versão é lançada. Para dados em tempo real, uma marca temporal automatizada pode servir como identificador de versão. Para cada conjunto de dados o editor deve abordar o versionamento de forma consistente e informativa de modo que os consumidores de dados possam compreender e trabalhar com os dados alterados. 		
+		
+Boa Prática 7: Fornecer um indicador de versão		
+Designar e indicar um número de versão ou data para cada conjunto de dados.		
+Por que		
+As informações sobre a versão tornam a revisão de um conjunto de dados singularmente identificável. A singularidade pode ser utilizada pelos consumidores de dados para determinar especificamente com qual versão de um conjunto de dados estão trabalhando. O bom versionamento de dados possibilita aos consumidores entender se uma nova versão de um conjunto de dados está disponível. O versionamento explícito leva em conta a repetibilidade na pesquisa, permite comparações e evita confusão. A utilização de números de versão singulares que seguem uma abordagem padronizada pode também definir as expectativas do consumidor sobre como as versões diferem.		
+Resultado Pretendido		
+Os humanos e os agentes de software poderão facilmente determinar com qual versão do conjunto de dados estão trabalhando.		
+Possível Abordagem para Implementação		
+O melhor método para o fornecimento de informações sobre o versionamento irá variar de acordo com o contexto; no entanto, existem algumas diretrizes básicas que podem ser seguidas, como por exemplo:		
+Include a unique version number or date as part of the metadata for the dataset.		
+Incluir um único número de versão ou data como parte dos metadados para o conjunto de dados.		
+Use a consistent numbering scheme with a meaningful approach to incrementing digits, such as [SchemaVer].		
+Utilizar uma esquematização numérica consistente com uma abordagem significativa para incrementar dígitos, tal como [SchemaVer]. 		
+		
+Caso os dados estejam sendo disponibilizados por meio de uma API, o URI utilizado para solicitar a versão mais recente dos dados não deve ser alterado à medida em que as versões se modifiquem. Porém deve ser possível requisitar uma versão específica por meio de uma API.		
+Utilizar Memento [RFC7089] ou seus componentes, para evidenciar o versionamento temporal de um conjunto de dados e para acessar a versão que estava operante em uma determinada data e hora. O protocolo Memento alinha-se intimamente com a abordagem para designação de URIs para versões que são utilizadas para as especificações W3C descritas abaixo.		
+		
+A Ontologia de Linguagens Web  [OWL2-QUICK-REFERENCE]  e a Ontologia de Proveniência, Autoria e Versionamento [PAV] fornecem uma série de propriedades de anotações para a informação sobre versões.		
+		
+EXEMPLO 7		
+Inteligível por máquina		
+		
+O exemplo abaixo traz os metadados para as paradas de ônibus com a inclusão dos metadados de versionamento. As propriedades owl:versionInfo e pav:version são utilizadas para denotar a versão do conjunto de dados.		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Utilizando Memento		
+Considere:		
+http://data.mycity.example.com/transport/dataset/bus/stops é a “URI genérica” na qual a atual versão do conjunto de dados sempre está disponível		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-12-17 é o URI versionada para o presente banco de dados		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05 é o URI versionada da versão anterior do conjunto de dados		
+		
+No protocolo Memento, os URIs versionados fornecem informações de cabeçalho de resposta HTTP para expressar sua versão de data e hora e sua relação com o URI genérico:		
+curl -I http://data.mycity.example.com/transport/dataset/bus/stops-2015-12-17HTTP/1.1 200 OKMemento-Datetime: Thu, 17 Dec 2015 00:00:00 GMTLink:<http://data.mycity.example.com/transport/dataset/bus/stops>;rel=“original”		
+		
+O URI genérico fornece um link para um TimeGate que dá suporte a uma negociação de data e hora como uma forma de determinar qual versão de um determinado conjunto de dados estava operante em um determinado momento no tempo. Uma vez que o URI genérico não é versionado, nenhuma versão de data e hora é fornecida nos cabeçalhos.		
+		
+		
+Os URIs versionados também podem fornecer um link para um TimeGate:		
+		
+É assim que um cliente determina qual versão do conjunto de dados estava operacional em 20 de junho de 2015:		
+		
+		
+		
+Inteligível por humanos		
+Página de exemplo com informações sobre o versionamento de dados inteligíveis por humanos.		
+		
+Como testar		
+Verifique se os metadados para o conjunto de dados/distribuição fornece um número de versão ou data específicos em um formato inteligível por humanos.		
+Verifique se a aplicação do computador pode detectar/descobrir automaticamente e processar o número de versão ou data específicos  de um conjunto de dados ou uma distribuição.		
+		
+Evidência		
+Requisitos relevantes: R-DataVersion		
+		
+Benefícios		
+R - Reutilização		
+C - Confiabilidade 		
+		
+Boa Prática 8: Fornecer histórico de versão		
+Fornecer um histórico completo de versão que explique as alterações feitas em cada versão.		
+		
+Por que		
+Ao criar aplicações que utilizam dados é útil compreender a variabilidade destes ao longo do tempo. A interpretação de dados também é potencializada pela compreensão de sua dinâmica. Determinar como diversas versões de um conjunto de dados diferem umas das outras é tipicamente muito trabalhoso a não ser que um sumário destas diferenças seja fornecido.		
+		
+Resultado Pretendido		
+Os humanos e os agentes de software serão capazes de entender como o conjunto de dados se altera tipicamente de versão à versão, assim como poderão especificar como duas versões em particular diferem uma da outra. 		
+		
+Possível Abordagem para Implementação		
+Fornecer uma lista de versões publicadas e uma descrição para cada versão que explique como esta difere da anterior. Uma API pode demonstrar o histórico da versão como um único URL dedicado que recupere a última versão a partir do histórico completo.		
+		
+EXEMPLO 8		
+		
+Inteligível por máquina		
+Suponha que uma nova parada de ônibus foi criada e que um novo conjunto de dados (stops-2015-12-17) seja publicado com o objetivo de manter os dados atualizados. O novo conjunto de dados é uma versão de stops-2015-05-05. Os metadados inteligíveis por máquina do novo conjunto de dados são demonstrados abaixo com as informações do seu histórico de versionamento correspondente.		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Ao Utilizar Memento		
+Assuma:		
+		
+http://data.mycity.example.com/transport/dataset/bus/stops é um “URI genérico” na qual a versão corrente do conjunto de dados está sempre disponível.		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-12-17 é o URI versionado para o atual conjunto de dados		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05 é o URI versionado para a versão anterior do conjunto de dados		
+http://example.org/stops-2015-01-01 é o URL versionado da primeira versão do conjunto de dados		
+		
+Os URIs versionados, o URI genérico e o TimeGate podem fornecer um link para o TimeMap que fornece um panorama de todas as versões temporais do conjunto de dados:		
+curl -I http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+O TimeMap é recuperado dessa forma:		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+O URI versionado pode fornecer informações sobre as relações com outras versões do conjunto de dados:		
+		
+		
+		
+Inteligível por humanos		
+Página de Exemplo com informações do histórico de versionamento de dados inteligíveis por humanos. 		
+Como testar		
+Verifique se uma lista das versões já publicadas está disponível assim como o changelog. Este último deve descrever exatamente em que cada uma das novas versões difere da versão anterior.		
+Evidência		
+Requisitos relevantes: R-DataVersion		
+Benefícios		
+R - Reutilização		
+C - Confiabilidade 		
+		
+8.7 Identificadores de Dados		
+Os identificadores assumem diversas formas e são extensivamente utilizados em todos os sistemas de informação. A descoberta de dados, o uso e a citação na Web dependem fundamentalmente do uso de URIs HTTP (ou HTTPS): identificadores globalmente únicos que podem ser buscados ao serem desreferenciados por meio da Internet [RFC3986]. Talvez seja válido enfatizar alguns pontos-chave sobre os URIs no presente contexto:		
+URIs são “strings burros”, o que quer dizer que não carregam nenhuma semântica. Sua função é puramente identificar um recurso.		
+		
+Embora seja verdadeiro o ponto anterior,  seria perverso para um URI tal qual http://example.com/dataset.csv retornar nada além de do que um arquivo CSV. É recomendável que seja inteligível por humanos.		
+		
+Ao ser desreferenciado (buscado), um único URI pode oferecer o mesmo recurso em mais de um formato. http://example.com/dataset pode oferecer os mesmos dados em, digamos, CSV, JSON e XML. O servidor retorna o formato mais apropriado com base na negociação de conteúdo.		
+Um URI pode redirecionar-se a outro.		
+Desreferenciar um URI aciona um programa de computador para ser executado em um servidor que pode fazer algo tão simples como retornar um arquivo único e estático, ou pode realizar processamentos complexos. Precisamente qual processamento é realizado - por exemplo, o software no servidor - é completamente independente do URI em si.		
+		
+Boa Prática 9: Utilizar URIs constantes como identificadores de conjuntos de dados		
+Identificar cada conjunto de dados por meio de um URI constante e cuidadosamente escolhido.		
+		
+Por que		
+Adotar um sistema de identificação comum permite a básica identificação dos dados e comparação dos processos por qualquer um dos atores envolvidos de forma confiável. São pré-condições essenciais para o gerenciamento dod dados e a reutilização adequados. 		
+Os desenvolvedores podem construir URIs dentro de seus códigos e portanto é importante que tais URIs sejam constantes e que desreferenciem para o mesmo recurso ao longo do tempo, sem a necessidade de intervenção humana.		
+		
+Resultado Pretendido		
+Os conjuntos de dados ou as informações sobre os conjuntos de dados serão encontráveis e citáveis ao longo do tempo, independentemente do status, da disponibilidade ou do formato dos dados.		
+		
+Possível Abordagem para Implementação		
+Para serem persistentes os URIs devem ser designados como tal. Muito já foi escrito sobre esse tópico - acesse, por exemplo, o Estudo da Comissão Europeia sobre URIs Constantes [PURI], que por sua vez propõe conexões a muitos outros recursos. 		
+No caso de um editor de dados ser incapaz ou estiver relutante em gerenciar um espaço URI diretamente para constância, uma abordagem alternativa seria utilizar um serviço de redirecionamento tal qual Identificadores Constantes para a Web ou purl.org. Estes oferecem URIs constantes que podem ser redirecionados conforme necessário de forma que a localização eventual possa ser efêmera. O software por trás desses serviços se encontra disponível gratuitamente e portanto pode ser instalado e gerenciado localmente, caso necessário.		
+		
+Identificadores de Objetos Digitais (DOIs) oferecem uma alternativa similar. Estes identificadores são definidos independentemente de qualquer tecnologia Web, mas podem ser anexados a um “URI stub”. Os DOIs são parte importante da infraestrutura digital para a pesquisa de dados e bibliotecas. 		
+		
+EXEMPLO 9		
+O URI http://data.mycity.example.com/transport/dataset/bus/stops possui diversas características que oferecem suporte à constância:		
+		
+		
+		
+		
+Todos os nomes estão sujeitos a mudanças ao longo do tempo, no entanto ao escolher um nome de domínio é razoável que Adrian assuma que MyCity vá continuar a existir e que continuará a ter um governo. Portanto, enquanto casos como a Iugoslávia comprovam que até mesmo nomes de países mudam e que domínios de nível superior podem desaparecer (tal como .yu), um nome de domínio baseado no nome da própria cidade é tão persistente quanto qualquer nome de domínio pode ser. 		
+Ao inserir dados no subdomínio data.mycity.example.com, Adrian está criando um domínio específico que pode ser gerenciado independentemente de qualquer departamento em particular.		
+Não é seguro assumir que um departamento específico vá persistir. As autoridades em MyCity podem muito bem decidir que o Departamento de Transportes deve fundir-se com outro departamento e criar, por exemplo, o Departamento de Transportes e Meio Ambiente. Está correto, portanto, não inserir o nome do Departamento de Transportes no URI, mas sim inserir a tarefa para a qual os dados são designados, neste caso o fornecimento de transporte público.		
+		
+O segmento de caminho /dataset é um indicativo de que o URI identifica um conjunto de dados em vez de, digamos, uma rota de ônibus específica.		
+Da mesma forma o segmento de caminho /bus nos leva mais além em direção ao conjunto de dados específico pela qual Adrian é responsável.		
+Finalmente, /stops nos conduz ao conjunto de dados que diz respeito às paradas de ônibus em MyCity.		
+		
+Em termos DCAT este seria o identificador para o conjunto de dados. Distribuições específicas do conjunto de dados serão provavelmente identificadas pela adição de extensões de arquivo relevantes ao URI, tais como		
+http://data.mycity.example.com/transport/dataset/bus/stops.csv, http://data.mycity.example.com/transport/dataset/bus/stops.json, http://data.mycity.example.com/transport/dataset/bus/stops.ttl etc.		
+		
+Como testar		
+Verifique se cada conjunto de dados encontra-se identificado utilizando um URI que tenha sido designado para ser constante. Idealmente o site Web relevante inclui uma descrição de uma esquema de design e uma promessa crível de constância caso o editor já não puder manter o espaço URI por sí só. 		
+		
+Evidência		
+Requisitos relevantes: R-UniqueIdentifier, R-Citable		
+		
+Benefícios		
+		
+		
+		
+		
+		
+Boa Prática 10: Utilizar URIs constantes como identificadores dentro dos conjuntos de dados		
+Quando possível reutilizar os URIs de terceiros como identificadores dentro dos conjuntos de dados.		
+		
+Por que		
+O poder da Web reside no efeito de Rede. O primeiro telefone somente tornou-se útil quando um segundo telefone denotou que havia alguém para telefonar; o terceiro telefone tornou os dois primeiros ainda mais úteis. Os dados tornam-se mais valiosos caso refiram-se a dados de outras pessoas sobre o mesmo tema, o mesmo local, o mesmo conceito, o mesmo evento, a mesma pessoa, e assim por diante.		
+Isto significa utilizar os mesmos identificadores por meio de diversos conjuntos de dados e garantir que os seus identificadores possam ser referidos por outros conjuntos de dados. Quando tais identificadores são URIs HTTP, estes podem ser consultados e mais dados descobertos.		
+Estas ideias estão no centro de As Cinco Estrelas dos Dados Conectados, onde um ponto de dados conecta-se a outro, e no Hypermedia, onde links podem ser utilizados para levar dados adiante ou a serviços que possam agir sobre ou relacionar-se de alguma forma com os dados.		
+Isto é a Web dos Dados		
+		
+Resultado Pretendido		
+Os itens de dados serão relacionados por meio da Web criando um espaço de informação global igualmente acessível a humanos e máquinas. 		
+		
+Possível Abordagem para Implementação		
+Este é um tópico em si mesmo e um documento genérico como este comporta somente um detalhamento superficial.		
+Os desenvolvedores sabem que muito frequentemente o problema que estão tentando resolver já foi solucionado por outras pessoas. Da mesma forma caso você esteja buscando um conjunto de identificadores para coisas óbvias tais como países, moedas correntes, disciplinas, espécies, proteínas, cidades e regiões, ganhadores de Prêmios Nobel e produtos - alguém já percorreu o mesmo caminho. Os passos descritos em “descobrindo vocabulários já existentes” [LD-BP] podem ser prontamente adaptados.		
+		
+certifique-se de que os conjuntos de URI que você utiliza tenham sido publicados por um grupo ou uma organização confiável;		
+certifique-se de que os conjunto de URIs são de URIs constantes.		
+		
+Caso não seja possível encontrar um conjunto de identificadores já existente e que atenda às suas necessidades, será preciso criar o seu próprio conjunto seguindo os padrões para constância URI de forma a que outros possam adicionar valor aos seus dados ao estabelecerem conexões com eles.		
+		
+EXEMPLO 10		
+O URI utilizado como exemplo na Boa Prática anterior (http://data.mycity.example.com/transport/dataset/bus/stops) identifica um conjunto de dados. Uma parte significativa do URI pode ser reutilizada para identificar paradas de ônibus, rotas, além do tipo de ônibus utilizado em um determinado serviço. 		
+		
+Por exemplo, um URI constante e adequado para a rota “Aeroporto - Bullfrog” seria: http://data.mycity.example.com/transport/route/bus/id/AB		
+		
+Este URI tem a mesma estrutura inicial do conjunto de dados, mas em vez de /dataset ele agora inclui o path segment /route  de forma que humanos possam ver que o que está sendo identificado é uma rota de ônibus. 		
+		
+O segmento /id indica que o URI identifica algo que não é um recurso de informação, por exemplo, algo que não se pode recuperar por meio da Internet, e /AB é o identificador local para a rota de ônibus real. Isto é consistente com a recomendação dada pela Diretriz de Implementação SmartSearch GS1, que declara que onde os identificadores padrão forem utilizados para um produto, uma localidade, etc., é recomendável que o URI inclua o tipo de identificador que está sendo utilizado. Por exemplo, caso um GTIN esteja sendo utilizado para identificar um produto, então o URI deve seguir o seguinte formato:		
+		
+		
+		
+		
+		
+		
+		
+Ao sugerir esta recomendação, reconhecemos que URIs podem ser extensos. Em um conjunto de dados, mesmo os de tamanho moderado, armazenar cada URI será provavelmente repetitivo e obviamente um desperdício. Alternativamente, defina localmente identificadores únicos para cada elemento (tal qual AB neste exemplo) e forneça dados que os permita serem convertidos em URIs únicos globais programaticamente. O Vocabulário de Metadados para Dados Tabulares  [Tabular-Metadata] fornece mecanismos para fazê-lo dentro de dados tabulares tais como arquivos CSV, particularmente utilizando propriedades  de modelo de URI, tais como a propriedade sobre URL.		
+		
+Como testar		
+Verifique se dentro do conjunto de dados as referências a coisas que não se modificam ou que se modificam lentamente, como países, regiões, organizações e pessoas são referenciados por meio de URIs ou por identificadores curtos que possam ser anexados a um stub URI. Idealmente os URIs deveriam solucionar, no entanto eles possuem valor como variáveis de escopo global caso sejam capazes de resolver ou não.  		
+		
+Evidência		
+Requisitos relevantes: R-UniqueIdentifier		
+		
+Benefícios		
+C - Compreensão		
+C - Confiabilidade 		
+A - Acessibilidade		
+P - Processabilidade		
+		
+Boa Prática 11: Designar URIs para versões e séries de conjuntos de dados 		
+Designar URIs a versões individuais de conjuntos de dados assim como a séries em geral		
+		
+Por que		
+Tal como em documentos, muitos conjuntos de dados são naturalmente categorizáveis em séries ou grupos. Por exemplo:		
+paradas de Ônibus em MyCity (que se modificam ao longo do tempo);		
+uma listagem dos representantes eleitos em MyCity;		
+versões de um documento em progresso até sua conclusão.		
+Em circunstâncias diferentes seria apropriado fazer uma referência à situação corrente (o conjunto de paradas de ônibus atuais, os representantes eleitos atuais, etc.) Em outras circunstâncias pode ser apropriado fazer referências à situação tal como ela se apresentava em um momento específico. 		
+		
+Resultado Pretendido		
+Humanos e agentes de software serão capazes de recorrer a versões específicas de um conjunto de dados e a conceitos tais como “séries de conjuntos de dados” e “a versão mais recente”. 		
+		
+Possível Abordagem para Implementação		
+O W3C fornece um bom exemplo sobre como fazê-lo. O URI (constante) para este documento é https://www.w3.org/TR/2016/PR-dwbp-20161215/. Este identificador aponta para um snapshot deste documento no dia de sua publicação. O URI para a “versão mais recente” deste documento é https://www.w3.org/TR/dwbp/, o qual é um identificador para documentos estreitamente relacionados, que estão sujeitos a alterações ao longo do tempo. No momento da publicação ambos os URIs  solucionam para este documento. No entanto, quando a próxima versão deste documento for publicada, o URI da “versão mais recente” será alterada e redirecionada a esta; porém, o URI datado permanecerá inalterado.		
+		
+Exemplo 11		
+Suponha que uma nova parada de ônibus tenha sido criada. Para manter stops-2015-05-05 atualizado, uma nova versão do conjunto de dados (stops-2015-12-17) é criada. stops-2015-12-17 inclui todos os dados das paradas de ônibus stops-2015-05-05 além dos dados sobre a nova parada de ônibus. Ambas as versões podem ser identificadas pelos seguintes URIs:		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05 é o URI versionado da primeira versão do conjunto de dados		
+http://data.mycity.example.com/transport/dataset/bus/stops-2015-12-17 é a versão do URI da versão atualizada do conjunto de dados		
+http://data.mycity.example.com/transport/dataset/bus/stops sempre redireciona para a última versão e portanto redirecionou para stops-2015-05-05 até 17 de dezembro de 2015, quando a configuração do servidor foi atualizada de forma a direcionar aquela URL para stops-2015-12-17.		
+		
+Como testar		
+Verifique se cada versão do conjunto de dados possui seu próprio URI e também se a “versão mais recente” do URI está disponível.		
+		
+Evidência		
+Requisitos relevantes:  R-UniqueIdentifier, R-Citable		
+		
+Benefícios		
+R - Reutilização		
+E - Encontrabilidade		
+C - Confiabilidade 		
+		
+8.8 Formatos de Dados		
+O formato no qual os dados são disponibilizados aos consumidores é um aspecto-chave para a usabilidade dos dados. O melhor e  mais flexível mecanismo do mundo é inútil a não ser que ofereça os dados em formatos que permitam o uso e a reutilização. Abaixo iremos detalhar as Boas Práticas ao selecionar formatos para os seus dados, tanto em nível de arquivos quanto de campos individuais. O W3C encoraja o uso de formatos que possam ser utilizados por um público o mais amplo possível e processados mais facilmente por sistemas de computação. Os formatos de fontes, tais como os depósitos de descarte de bases de dados ou de planilhas, utilizados para gerar o formato final a ser publicado, estão fora do escopo. Este documento trata do que de fato foi publicado e não de sistemas internos utilizados para gerar os dados publicados.  		
+		
+Boa Prática 12: Utilizar formatos de dados padronizados inteligíveis por máquinas		
+Disponibilize os dados em um formato padronizado e inteligível por máquinas que seja bem apropriado para seu propósito ou uso em potencial.		
+		
+Por que		
+À medida que os dados passam a ser mais ubíquos e os conjuntos de dados maiores e mais complexos, o processamento por computadores torna-se a cada dia mais relevante. Postar dados em um formato que não seja inteligível por máquinas impõe severas limitações para o seguimento da utilidade dos dados. Os dados tornam-se úteis ao serem processados e transformados em informação. Observe que há uma importante distinção entre formatos que podem ser lidos e editados por humanos utilizando um computador e formatos que são inteligíveis por máquinas. O último termo implica que os dados sejam prontamente extraídos, transformados e processados por um computador.		
+Utilizar formatos de dados não padronizados é caro e ineficiente, e os dados podem perder significado enquanto são transformados. Em contraste, formatos de dados padronizados viabilizam tanto a interoperatividade quanto usos futuros, tais como a remixagem ou a visualização, muitos dos quais não podem ser antecipados quando os dados são publicados pela primeira vez.Também é importante observar que a maior parte dos formatos padronizados inteligíveis por máquinas também são neutros no que se refere à localidade.		
+		
+Resultado Pretendido		
+As máquinas serão capazes de ler e processar facilmente os dados publicados na Web e os humanos poderão utilizar ferramentas computacionais normalmente disponíveis no domínio relevante para trabalhar com dados.  		
+		
+Possível Abordagem para Implementação		
+Torne os dados disponíveis em um formato de dados padronizado e inteligível por máquinas que seja facilmente analisável e inclua, mas não se limite, à serialização de sintaxes CSV, XML, HDF5, JSON e RDF como RDF/XML, JSON-LD ou Turtle.		
+		
+EXEMPLO 12		
+Adrian sabe que dados tabulares são comumente utilizados na Web e decide utilizar CSV como o formato de dados para uma das distribuições do conjunto de dados dos pontos de ônibus. Para facilitar o processamento de dados, ele utiliza o Modelo para Dados Tabulares e Metadados na Web para a publicação da distribuição CSV (stops-2015-05-05.csv). O exemplo abaixo apresenta um fragmento da distribuição CSV que está de acordo com os metadados estruturais definidos no Exemplo 4.		
+Identificador, Nome, Descrição, Latitude, Longitude, ZONA, URL		
+345,Castle Avenue,Sunset Drive,-3.731862,-38.526670,x20,http://data.mycity.example.com/transport/road/bus/stop/id/345		
+483,Main Street,Lily Park,-3.731541,-38.535157,x20,http://data.mycity.example.com/transport/road/bus/stop/id/483		
+		
+Como testar		
+Verifique se o formato de dados está em conformidade com as especificações de um formato de dados inteligível por máquinas. 		
+		
+Evidência		
+Requisitos relevantes: R-FormatMachineRead, R-FormatStandardized R-FormatOpen		
+		
+Benefícios		
+		
+		
+		
+Boa Prática 13: Utilizar representações de dados de localidade neutra		
+Utilize estruturas e valores de dados de localidade neutra ou, quando isso não for possível, forneça metadados sobre a localidade utilizada pelos valores de dados.		
+		
+Por que		
+Os valores de dados que são inteligíveis por máquinas e não são específicos de nenhum idioma ou cultura em particular são mais duráveis e menos suscetíveis a más interpretações do que valores que usam uma das muitas e diversas interpretações culturais. Coisas como datas, moedas e números podem soar parecidas, mas têm significados diferentes em locais distintos. Por exemplo, a “data” 4/7 tanto pode ser lida como 07 de abril ou 04 de julho, dependendo de onde os dados foram criados. Da mesma forma, €2,000 pode tanto significar dois mil Euros quanto uma representação excessivamente precisa de dois Euros. Ao utilizar um formato de localidade neutra, os sistemas evitam a necessidade de estabelecer regras intercambiáveis específicas que variam de acordo com o idioma ou a localização do usuário.  		
+Quando os dados já estão em um formato de localidade específica, tornam explícitas a localidade e a linguagem por meio do fornecimento de parâmetros que permitem aos usuários determinar quão prontamente poderão trabalhar com os dados e habilitar serviços de tradução automatizados. 		
+		
+Resultado Pretendido		
+Humanos e agentes de software serão capazes de interpretar o significado de strings que representam datas, horários, moedas, números, etc, de forma precisa. 		
+		
+Possível Abordagem para Implementação		
+Os formatos de serialização de dados mais comuns são de localidade neutra. Por exemplo, tipos XML Schema como xsd:integer e xsd:date destinam-se a intercâmbios de dados de localidade neutra. Utilizar representações de localidade neutra permite que os valores dos dados sejam processados de forma precisa sem análises complexas ou más interpretações e também permite que os dados sejam apresentados em um formato mais confortável aos consumidores de dados em qualquer localidade. Por exemplo, em vez de armazenar "€2000,00" como um string é altamente preferível intercambiar uma estrutura de dados tal como:		
+...		
+"price" {		
+   "value": 2000.00,		
+   "currency": "EUR"		
+}		
+…		
+Alguns conjuntos de dados contêm valores que não são ou não podem ser renderizados em um formato de localidade neutra. Isto é particularmente verdadeiro para todos os valores de texto em idioma natural. Para cada campo de dados que possa conter textos de localidade afetada ou de idioma natural, deveria haver uma aba de idioma associada, utilizada para indicar o idioma e a localização do dado. Essa informação de localidade pode ser utilizada ao analisar os dados ou para assegurar a apresentação e o processamento adequados do valor por parte do consumidor. BCP47 [BCP47] fornece o padrão para a identificação do idioma e da localidade e, informativamente, CLDR [CLDR] é a fonte de ambos, representando formatos especificamente localizados e a referência para os valores de dados de localidade específica. 		
+		
+EXEMPLO 13		
+Inteligível por máquinas		
+O exemplo abaixo demonstra os metadados inteligíveis por máquinas para o conjunto de dados dos pontos de ônibus (stops-2015-05-05),  com a inclusão de metadados de parâmetros de localidade. A propriedade dct:language é utilizada para declarar os idiomas nos quais o conjunto de dados foi publicado. Caso o conjunto de dados esteja disponível em diversos idiomas, utilize valores múltiplos para essa propriedade. A propriedade dct:conformsTo é utilizada para especificar o padrão adotado para os formatos de datas e horários. 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+O exemplo abaixo demonstra uma representação de localidade neutra de uma tarifa de ônibus.		
+tarifa_id,preço,tipo_moeda,método_pagamento,transfências,duração_transferência		
+ p,1.25,USD,0,0,0		
+ a,5.25,USD,0,0,0		
+		
+Inteligível por humanos		
+Encontra-se disponível uma página de exemplo com uma descrição de conjunto de dados inteligível por humanos. 		
+		
+Como testar		
+Verifique se os valores dos dados sensíveis à localização estão representados em um formato de localidade neutra ou que, caso isso não seja possível, sejam fornecidos metadados de localidade relevante. 		
+		
+Evidência		
+Requisitos relevantes: R-FormatLocalize, R-MetadataAvailable, R-GeographicalContext, R-FormatMachineRead		
+		
+Benefícios:		
+R - Reutilização		
+C - Compreensão		
+		
+Boa Prática 14: Fornecer dados em formatos múltiplos		
+Disponibilize dados em formatos múltiplos quando mais de um formato for adequado ao uso pretendido ou potencial.		
+		
+Por que		
+Disponibilizar dados em mais de um formato reduz os custos decorrentes da transformação de dados e minimiza a possibilidade de introduzir erros no processo de transformação. Caso muitos usuários precisem transformar os dados em um formato específico, publicá-los neste formato desde o início poupa tempo, dinheiro e evita erros com maior eficiência. Por último, aumenta o número de instrumentos e aplicações que podem processar os dados. 		
+Resultado Pretendido		
+O maior número possível de usuários será capaz de utilizar os dados sem ter que primeiramente transformá-los para seu formato de preferência.		
+		
+Possível Abordagem para Implementação		
+Considere os formatos de dados mais prováveis de serem necessários e alternativas que possivelmente serão úteis no futuro. Os editores de dados devem equilibrar o esforço necessário para disponibilizar os dados em muitos formatos em relação ao custo de fazê-lo; no entanto, fornecer pelo menos uma alternativa aumentará significativamente a usabilidade dos dados. Para disponibilizar dados em mais de um formato você pode utilizar negociação de conteúdo conforme descrito no documento Usos das Boas Práticas sobre negociações de conteúdo para o fornecimento de dados em formatos múltiplos. 		
+Uma palavra de advertência: identificadores de localidade dentro de conjuntos de dados que possam ser expostos como identificadores de fragmento em URIs devem ser consistentes através dos diversos formatos. 		
+		
+EXEMPLO 14		
+Para alcançar uma ampla gama de consumidores de dados, Adrian decide também fornecer uma distribuição JSON do conjunto de dados dos pontos de ônibus. No exemplo a seguir a propriedade dcat:distribution é utilizada para associar o conjunto de dados stops-2015-05-05 com suas duas distribuições:		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Como testar		
+Verifique se o conjunto de dados completo está disponível em mais de um formato de dados.		
+Evidência		
+Requisitos relevantes: R-FormatMultiple		
+		
+Benefícios		
+R - Reutilização		
+P - Processabilidade 		
+		
+8.9 Vocabulários de Dados		
+Vocabulários definem os conceitos e as relações (também conhecidas como “termos” ou “atributos”) utilizados para descrever e representar uma área de interesse. São utilizados para classificar os termos que podem ser utilizados em uma aplicação específica, caracterizar possíveis relações e definir possíveis limitações na utilização destes termos. Vários sinônimos próximos de “vocabulário” já foram cunhados, como por exemplo, ontologia, vocabulário controlado, tesauro, taxonomia, lista de códigos, rede semântica. 		
+		
+Não há uma divisão precisa entre os artefatos referidos por estas denominações. No entanto, “Ontologia” tende a denotar vocabulários de classes e propriedades que estruturam as descrições de recursos em conjuntos de dados (conectados). Em bases de dados relacionais, estes correspondem a nomes de tabelas e colunas; em XML, correspondem aos elementos definidos por um Schema XML.		
+As ontologias são os principais blocos de construção para técnicas de inferência na Web Semântica. O primeiro meio oferecido pelo W3C para a criação de ontologias é RDF Schema [RDF-SCHEMA]. É possível definir ontologias mais expressivas com axiomas adicionais utilizando linguagens tais como aquelas da Ontologia de Linguagens Web [OWL2-OVERVIEW].		
+		
+Por outro lado, “vocabulários controlados”, “esquematizações conceituais” e “sistemas de organização de conhecimento” enumeram e definem recursos que podem ser empregados nas descrições realizadas com o tipo de vocabulário prévio, por exemplo, vocabulários que estruturam as descrições de recursos em conjuntos de dados (concectados). Um conceito advindo de um tesauro, digamos, “arquitetura”, será utilizado, por exemplo, no campo de assunto para a descrição de um livro, (onde “assunto” tenha sido definido em uma ontologia para livros). Geralmente não são necessários formalismos complexos para definir os termos nestes vocabulários. Modelos mais simples foram propostos para representá-los e permutá-los, tais como o modelo de dados ISO 25964  [ISO-25964] ou o Sistema Simples de Organização de Conhecimento do W3C [SKOS-PRIMER].		
+		
+Boa Prática 15: Reutilizar vocabulários preferencialmente padronizados		
+Utilize termos advindos de vocabulários compartilhados, preferencialmente os padronizados, para codificar dados e metadados. 		
+		
+Por que		
+A utilização de vocabulários já em uso por outros captura e facilita o consenso em comunidades. Aumenta a interoperabilidade e reduz as redundâncias, incentivando assim a reutilização de seus próprios dados. Particularmente, a utilização de vocabulários compartilhados para metadados (especialmente os metadados estruturais, de proveniência, de qualidade e de versionamento) auxilia o processo de comparação e o processamento automático - tanto dos dados quanto dos metadados. Além disso, a referência a códigos e termos de padrões ajuda a evitar ambiguidade e conflitos entre elementos e valores similares.  		
+		
+Resultado Pretendido		
+A interoperabilidade e o consenso entre os publicadores de dados e consumidores serão melhorados.		
+		
+Possível abordagem para Implementação		
+A seção de Vocabulários no documento Boas Práticas para a Publicação de Dados Conectados [LD-BP] do W3C fornece orientação sobre a descoberta, avaliação e seleção de vocabulários existentes.		
+Organizações tais como o Consórcio Geoespacial Aberto (OGC),  ISO, W3C, WMO, bibliotecas e serviços de pesquisa de dados, etc., fornecem listagens de códigos, terminologias e vocabulários de Dados Conectados que podem ser utilizados por todos. Uma questão fundamental é garantir que o conjunto de dados - ou a sua documentação - forneça contextualização suficiente (em formatos inteligíveis por humanos e por máquinas) para que os consumidores de dados possam recuperar e explorar o significado padronizado dos valores. No contexto da Web uma forma eficiente de fazer isto é utilizar identificadores (URIs) baseados na Web para recursos de vocabulário padronizado, tendo em mente que o mesmo URI pode ter rótulos multilíngues anexados para uma maior interoperabilidade por diversas fronteiras. O tesauro multilíngue da União Europeia, o Eurovoc, fornece um exemplo primoroso.		
+		
+		
+Exemplo 15		
+O vocabulário DCAT expressa os metadados referentes aos conjuntos de dados [VOCAB-DCAT] e reutiliza elementos de diversos vocabulários pré-existentes: Dublin Core, FOAF, SKOS e vCard. Reutilizar as propriedades do Dublin Core, tais como dct:title, em vez de criar novos (digamos, dcat:title) possibilita que os metadados com base em DCAT possam ser consumidos por qualquer aplicação que seja capaz de ler e manipular as declarações do Dublin Core.		
+No setor da cultura digital o modelo de dados para a Europeana (EDM) também faz extenso uso de vocabulários compartilhados existentes, como Dublin Core, FOAF, SKOS, etc. Isto facilitou a adoção do EDM pelos fornecedores de dados da Europeana e auxiliou a posicioná-la como uma Boa Prática para iniciativas similares no mesmo setor. Por exemplo, o perfil de aplicação de metadados da Biblioteca Pública Digital Americana reutiliza o EDM e, portanto, emprega os diversos vocabulários em que o EDM se baseia. Como resultado grandes quantidades de dados da cultura digital tornaram-se mais interoperáveis dentro do setor. Estes dados também são mais fáceis de reutilizar por consumidores de outras comunidades que não estejam familiarizados como os modelos e as terminologias tradicionais utilizados pelas bibliotecas, arquivos e museus.		
+		
+4. A Biblioteca do Congresso publica listagens de idiomas ISO 639 como Dados Conectados (consulte [ISO639-1-LOC] para códigos de dois dígitos)		
+:stops		
+dct:language <http://id.loc.gov/vocabulary/iso639-1/en> 		
+		
+A Rede Terra Sólida e Meio Ambiente da Austrália publica uma listagem de referências de URIs para elementos de escalas temporais geológicas da Comissão Internacional de Tabelas Cronostratigráfica de Estratigrafia, tais como:		
+http://resource.geosciml.org/classifier/ics/ischart/Paleozoic para a Era Paleozóica:		
+:dataset-005 a dcat:Dataset ;		
+dct:temporal <http://resource.geosciml.org/classifier/ics/ischart/Paleozoic> 		
+		
+6. O Google mantém a Especificação de Feed de Trânsito Geral que define um formato para a publicação de dados de transporte público. Este formato se baseia em um conjunto de campos tais como, nome_atalho_rota ou tipo_rota, que são cuidadosamente definidos e expostos a constantes feedbacks da comunidade para facilitar o consenso. As definições incluem especificações de valores codificados tais como os utilizados em tipo_rota:		
+0 - Bondes, veículos leves sobre trilhos. Qualquer sistema  de veículo leve sobre trilhos ou no nível da rua dentro de uma área metropolitana.		
+1 - Metrô, transporte subterrâneo. Qualquer tipo de sistema de transporte por trilhos dentro de uma área metropolitana.		
+2 - Trilhos. Utilizados para transporte intermunicipal e viagem de longa distância.		
+		
+		
+Observe que em uma modalidade de Dados não Conectados estes campos e códigos não possuem identificadores Web individuais, nem tampouco uma semântica inteligível por máquinas. Portanto,  explorá-los demanda que os implementadores analisem a documentação e codifiquem interpretações em cada aplicação individual que consome os dados. 		
+		
+Como testar		
+Utilize repositórios de vocabulários como o repositório de Vocabulários Abertos Conectados ou listagens de serviços mencionados em Boas Práticas específicas de tecnologia, tais como as  Boas Práticas para a Publicação de Dados Conectados [LD-BP] ou o Contexto Inicial Fundamental para RDfs e JSON-LD; certifique-se de que as classes, propriedades, termos, elementos ou atributos utilizados para representar um conjunto de dados não repliquem aqueles definidos por vocabulários utilizados para outros conjuntos de dados.		
+Verifique se os termos ou códigos no vocabulário a serem utilizados estão definidos em uma organização de desenvolvimento de padrões tal como IETF, OGC e W3C, etc., ou tenham sido publicados por uma autoridade adequada, tais como agências governamentais.		
+		
+Evidência		
+Requisitos relevantes: R-MetadataStandardized, R-MetadataDocum, R-QualityComparable, R-VocabOpen, R-VocabReference		
+		
+Benefícios		
+C - Conectividade		
+E - Encontrabilidade		
+A - Acessibilidade		
+		
+Boa Prática 16: Escolher o nível correto de formalização		
+Opte por um nível de semântica formal que se ajuste tanto aos dados quanto às aplicações mais prováveis. 		
+		
+Por que		
+Como Albert Einstein pode ou não ter dito: tudo deve ser feito da forma mais simples o possível, mas não de forma simplória.		
+A semântica formal auxilia a estabelecer especificações precisas que transmitem significados detalhados e utilizar um vocabulário complexo (ontologia) pode servir como base para tarefas tais como o raciocínio automatizado. Por outro lado, tais vocabulários complexos exigem mais esforço de produção e compreensão, o que poderia dificultar sua reutilização, comparação e conexão por bases de dados que deles fazem uso.		
+		
+Caso os dados sejam suficientemente ricos para conter perguntas de pesquisa detalhadas (o fato de A, B e C serem verdadeiros e D, falso, leva à conclusão E), então algo semelhante ao Perfil OWL é claramente apropriado [OWL2-PROFILES].		
+		
+No entanto, não há nada de complicado em listas de pontos de ônibus.		
+Escolher um vocabulário muito simples é sempre atrativo, mas há um perigo: o desejo de manter a simplicidade pode induzir o editor a omitir alguns dados que fornecem informações importantes, tais como a localização geográfica dos pontos de ônibus, o que impediria que fossem mostrados em um mapa. Portanto, o equilíbrio deve ser atingido tendo em mente que o objetivo não é simplesmente compartilhar seus dados, mas sim sua reutilização por outros.		
+		
+Resultado Pretendido		
+Os casos de aplicação mais prováveis serão suportados sem um grau de complexidade maior  que o necessário. 		
+		
+Possível Abordagem para Implementação		
+Observe o que os seus pares já vêm fazendo. É provável que você irá se deparar com um vocabulário comumente utilizado, que vem ao encontro de suas necessidades - mesmo que de forma aproximada. Provavelmente este é o vocabulário a ser utilizado.		
+		
+Talvez você encontre um vocabulário que gostaria de utilizar, mas perceba uma restrição semântica que dificulta fazê-lo, como um domínio ou gama de restrições que não se aplica ao seu caso. Neste cenário é geralmente válido contatar os publicadores do vocabulário e conversar sobre o caso. Eles podem muito bem ser capazes de remover essa restrição e proporcionar  orientação adicional sobre como o vocabulário é utilizado de forma mais ampla. 		
+O W3C opera uma lista de discussão em public-vocabs@w3.org [arquivo] onde questões referentes ao uso e desenvolvimento dos vocabulários podem ser discutidas.		
+		
+Caso esteja criando seu próprio vocabulário, mantenha as restrições semânticas ao mínimo que atenda às suas necessidades e, novamente, de forma a incentivar a possibilidade de reutilização por terceiros. Como exemplo, os designers da própria (muito utilizada) ontologia SKOS, minimizaram seu compromisso ontológico questionando todos os axiomas formais sugeridos para suas classes e propriedades. Frequentemente estes foram rejeitados porque seu uso, embora benéfico para muitas aplicações, teria criado inconsistências formais para os dados de outras aplicações, o que tornaria o SKOS inteiramente não utilizável para estas. Como exemplo, a propriedade skos:broader não foi definida como uma propriedade transitiva, muito embora teria se adequado à forma como links hierárquicos  entre conceitos são criados em muitos tesauros [SKOS-DESIGN]. Ao selecionar um vocabulário busque evidências do tipo “design para amplo uso”.		
+		
+Outro exemplo deste “design para amplo uso” pode ser encontrado no schema.org. Lançado em junho de 2011, schema.org foi adotado massivamente em pouco tempo, em parte por conta de sua abordagem informativa - e não normativa - para a definição de tipos de objetos  com que as propriedades podem ser utilizadas. Por exemplo, apenas “espera-se” que os valores da propriedade autor sejam do tipo Organização ou Pessoa. Autor “pode ser usado” no tipo CreativeWork, mas esta não é uma restrição rigorosa. Novamente, esta abordagem ao design torna o schema.org uma boa escolha como vocabulário para usar ao codificar dados para compartilhamento.		
+		
+EXEMPLO 16		
+Adrian codifica os dados dos pontos de ônibus utilizando GTFS [GTFS] devido ao:		
+		
+seu uso generalizado;		
+oferece um nível de detalhamento que ajusta-se aos seus dados;		
+a motivação para publicar dados dos pontos de ônibus é oferecer suporte para o desenvolvimento de aplicações que auxiliem usuários de ônibus e a GTFS é elaborada justamente com esse propósito.		
+		
+Como testar		
+Esta é quase sempre uma questão de julgamento subjetivo para a qual não há um teste objetivo. Como diretriz geral:		
+Estão sendo utilizados vocabulários comuns como o Dublin Core e o schema.org?		
+Os fatos simples estão declarados de forma simples e podem ser facilmente recuperados?		
+Para idiomas de representação de conhecimento formal, aplicar um mecanismo de inferência sobre dados que utilize um determinado vocabulário e não produza declarações demasiadas e desnecessárias para as aplicações de destino.		
+		
+Evidência		
+Requisitos relevantes: R-VocabReference, R-QualityComparable		
+		
+Benefícios 		
+		
+8.10 Acesso de Dados		
+Fornecer acesso fácil aos dados na Web permite que tanto humanos quanto máquinas possam beneficiar-se do compartilhamento de dados utilizando a infraestrutura da Web. Por padrão, a Web oferece acesso utilizando os métodos do Protocolo de Transferência de Hipertexto (HTTP). Isto proporciona acesso aos dados em um nível atômico de transação; e pode ocorrer por meio de um simples download em massa de um arquivo ou, quando os dados são distribuídos por meio de arquivos múltiplos ou requerem métodos de recuperação mais sofisticados, por meio de uma API. Estes dois métodos básicos - download em massa e API - não são mutuamente excludentes. 		
+Na abordagem de download em massa os dados geralmente são o lado do servidor pré-processado, onde múltiplos arquivos ou árvores de diretório de arquivos são fornecidos como um único arquivo para download. Quando dados em massa estão sendo recuperados a partir de soluções de sistema que não são arquivos, dependendo das comunidades de usuários de dados, o editor de dados pode oferecer APIs para dar suporte a séries de operações de recuperação que representam uma única transação.		
+		
+Para dados que são gerados em tempo real - ou quase em tempo real - os publicadores devem utilizar um sistema automatizado que permita acesso imediato a dados cronologicamente sensíveis, tais como informações sobre emergências, dados de previsão do tempo ou métricas de monitoramento do sistema. Em geral, as APIs devem estar disponíveis para permitir que terceiros pesquisem e recuperem automaticamente estes dados.		
+Além de auxiliar a automatizar as pipelines de dados em tempo real, as APIs são adequadas para todos os tipos de dados na Web. Embora geralmente demandem mais trabalho em relação à postagem de arquivos para download, os editores vêm progressivamente considerando que a entrega de uma API estável, bem documentada e baseada em padrões vale o esforço.		
+		
+Para alguns publicadores de dados, é importante saber quem fez download dos dados e como os utilizaram. Existem duas abordagens possíveis para reunir estas informações. Primeiramente, os publicadores podem convidar os usuários a fornecê-las; sendo o incentivo da publicação continuada dos dados e a promoção de seu próprio trabalho as motivações do usuário para fazê-lo. Uma segunda abordagem menos amistosa é exigir o registro antes que os dados possam ser acessados. Em ambos os casos o Vocabulário de Utilização de Conjuntos de Dados [VOCAB-DUV] fornece uma estrutura para a representação de tais informações. Ao coletar dados dos usuários, o editor deve explicar por que e como as informações coletadas dos usuários (explícita ou implicitamente) serão utilizadas. Sem uma política clara, os usuários podem ter receio de fornecer informações, o que resultaria na redução do valor do conjunto de dados.		
+		
+Boa Prática 17: Fornecer download em massa		
+Permitir que os consumidores recuperem o conjunto de dados completo em uma única solicitação.		
+		
+Por que		
+Quando dados da Web estiverem distribuídos através de de muitas URIs, mas podem ser organizados logicamente como um container, acessar os dados em massa pode ser útil. Acesso em massa fornece um meio consistente de tratar os dados como um conjunto de dados. Acessar dados individualmente ao longo de muitas recuperações pode ser difícil e, caso utilizado para reagrupar o conjunto de dados completo, pode levar a abordagens inconsistentes ao tratamento dos dados.		
+		
+Resultado Pretendido		
+Transferências de arquivos grandes, que exigiriam mais tempo do que um usuário típico consideraria razoável, serão possíveis por meio de protocolos de transferência de arquivos dedicados.		
+		
+Possível Abordagem para Implementação		
+Dependendo da natureza dos dados e das necessidades dos consumidores, abordagens possíveis poderiam incluir o seguinte:		
+Para conjuntos de dados que existem inicialmente como arquivos múltiplos, o pré-processamento de uma cópia dos dados em um único arquivo tornando-os acessíveis para download a partir de uma URI. Para conjuntos de dados maiores, o arquivo também pode ser comprimido.		
+Hospedagem de uma API que inclua a habilidade de recuperar um download em massa, além de consultas dinâmicas. Esta abordagem é útil para que seja possível capturar um único snapshot dos dados dinâmicos.		
+Para conjuntos de dados muito grandes, transferências de arquivos em massa podem ser viabilizados por outros meios que não HTTP,  como bbcp ou GridFTP.		
+		
+O download em massa deve incluir os metadados que descrevem o conjunto de dados. Metadados de descoberta [VOCAB-DCAT] também devem ser disponibilizados além do download em massa.		
+		
+EXEMPLO 17		
+O Departamento de Trânsito MyCity pode possuir um conjunto de dados extenso, com horários de chegada para diversos modais de transporte coletados ao longo de um ano inteiro. Os dados podem ser armazenados na forma de um arquivo CSV para cada mês. Suponha que o departamento queira disponibilizar os dados por meio de um download em massa que contenha todos os arquivos CSV para uma hackatona. Uma vez que todos os dados de chegada para todos os serviços de trânsito seriam uma quantidade enorme de dados e que eles querem fornecer todos os meses do ano como um único conjunto de dados, devem oferecê-lo como um único arquivo comprimido (tarred e gzipped).		
+		
+Como testar		
+Verifique se o conjunto de dados completo pode ser recuperado com uma única solicitação.		
+		
+Evidência		
+Requisitos relevantes:  R-AccessBulk		
+		
+Benefícios		
+		
+Boa Prática 18: Fornecer Subconjuntos para Conjuntos de Dados Extensos		
+Caso seu conjunto de dados seja extenso, permita que usuários e  aplicações trabalhem prontamente por meio do uso de subconjuntos de seus dados.		
+		
+Por que		
+Conjuntos de dados muito extensos podem ser difíceis de mover de um lugar a outro. Também pode ser inconveniente para os usuários armazenar ou analisar um conjunto de dados extenso. Os usuários não deveriam ter que fazer download de um conjunto de dados completo se apenas necessitam de um subconjunto do mesmo. Além do mais as aplicações da Web que acessam conjuntos de dados extensos operarão com melhor desempenho caso seus desenvolvedores possam apropriar-se das vantagens do “carregamento lento”, trabalhando com porções menores de um todo e irem puxando novas porções apenas quando necessário. A habilidade de trabalhar com subconjuntos de dados também permite que o processamento offline funcione com mais eficiência. As aplicações em tempo real beneficiam-se particularmente, pois podem ser atualizadas mais rapidamente.		
+		
+Resultado Pretendido		
+Humanos e aplicações serão capazes de acessar subconjuntos de um conjunto de dados em vez de todo ele, com uma proporção maior de dados necessitados em relação a não necessitados para o maior número de usuários. Conjuntos de dados estáticos que os usuários no domínio considerariam extensos demais serão descarregáveis em porções menores. As APIs formarão fatias ou subconjuntos filtrados de dados disponíveis, a granularidade dependendo das necessidades do domínio e das demandas de desempenho na aplicação da Web.		
+		
+Possíveis Abordagens à Implementação		
+Considere os casos de uso esperados para o seu conjunto de dados e determine quais  tipos de subconjuntos são provavelmente os mais úteis. Uma API é normalmente a abordagem mais flexível para servir subconjuntos de dados, pois permite a personalização dos dados transferidos, tornando os subconjuntos disponíveis muito mais propensos a fornecer os dados necessitados - e poucos dados não necessitados -  para qualquer situação. A granularidade deve ser adequada para velocidades de acesso de aplicações Web. (Uma  chamada API que retorna dentro de um segundo permite que uma aplicação apresente uma interatividade que pareça natural. Dados que demoram mais do que dez segundos provavelmente farão com que os usuários suspeitem de falha).		
+Outra forma de formar subconjuntos a partir de um conjunto de dados é dividi-lo em unidades menores e tornar tais unidades disponíveis para download, ou para visualização de forma individualizada.		
+		
+Também pode ser útil marcar um conjunto de dados de forma que seções individuais (ou até mesmo porções ainda menores, se por acaso os casos de uso assim o justifiquem) possam ser processadas em separado por meio de dados. Uma forma de fazê-lo é indicando “fatias” utilizando Vocabulário do  Cubo de Dados RDF.		
+		
+EXEMPLO 18		
+O Departamento de Trânsito MyCity vem coletando dados detalhados sobre utilização de passageiros há vários anos. Este é um conjunto de dados muito extenso, contendo valores de número de passageiros por tipo de trânsito veicular, rotas, veículos, motoristas, ponto de partida e de chegada, tipos de passes de transporte, horários de início dos serviços, etc. O departamento também descobriu que uma grande variedade de atores estão interessados em fazer downloads de diversos subconjuntos de tais dados. As pessoas que gerenciam cada um desses sistemas de trânsito querem acessar somente os dados referentes ao seu próprio modal de transporte; os planejadores urbanos querem somente os números de embarque ou desembarque em cada parada, o departamento de finanças quer apenas os números dos diversos tipos de passes vendidos e outros atores querem ainda outros tipos de subconjuntos diversos. O departamento criou um site na Web onde os usuários podem selecionar quais variáveis são de seu interesse, definir intervalos entre algumas dessas variáveis e fazer download somente do subconjunto de que necessita.		
+		
+Como testar		
+Verifique se o conjunto de dados como um todo pode ser recuperado por meio de solicitações múltiplas que recuperem unidades menores.		
+		
+Evidência		
+Requisitos Relevantes: R-Citable, R-GranularityLevels, R-UniqueIdentifier, R-AccessRealTime		
+		
+Benefícios		
+		
+Boa Prática 19: Utilizar a negociação de conteúdo para disponibilizar dados em formatos múltiplos		
+Além de extensões de arquivos, utilize negociação de conteúdo para disponibilizar dados em formatos múltiplos.		
+		
+Por que		
+É possível disponibilizar dados em uma página HTML com dados inteligíveis por humanos mesclados a dados inteligíveis por máquina usando RDFa, por exemplo. No entanto, como a Arquitetura da Web [WEBARCH] e o DCAT [VOCAB-DCAT] deixa claro, um recurso, (como por exemplo, um conjunto de dados) pode ter muitas representações. Os mesmos dados podem estar disponíveis como JSON, XML, RDF, CSV e HTML. Estas representações múltiplas podem ser disponibilizadas por meio de uma API, entretanto devem ser disponibilizadas a partir do mesmo URL utilizando-se a negociação de conteúdo para retornar a representação apropriada (o que o DCAT denomina uma distribuição). URIs específicos podem ser usados para identificar representações individuais dos dados diretamente, ignorando a negociação de conteúdo.		
+		
+Resultado Pretendido		
+A negociação de conteúdo irá habilitar recursos diversos ou representações diferentes do mesmo recurso  a ser disponibilizado de acordo com a solicitação feita pelo cliente.		
+		
+Abordagem Possível para Implementação		
+Uma abordagem possível para implementação é configurar o servidor da Web para lidar com a negociação de conteúdo do recurso solicitado.		
+O formato específico da representação do recurso pode ser acessado pelo URI ou pelo tipo de conteúdo da solicitação HTTP. 		
+		
+EXEMPLO 19		
+Representações diferentes do conjunto de dados dos pontos de ônibus podem ser disponibilizadas conforme o tipo de conteúdo específico da Solicitação HTTP:		
+		
+Utilizar cURL para obter o conteúdo de http://data.mycity.example.com/transport/dataset/bus/stops representado nos formatos CSV e JSON-LD.		
+		
+		
+		
+		
+Como testar		
+Verifique as representações disponíveis do recurso e tente obtê-las especificando o conteúdo aceito no cabeçalho da Requisição HTTP.		
+Evidência		
+Requisitos Relevantes:  R-FormatMachineRead, R-FormatMultiple		
+		
+Benefícios		
+R - Reutilização		
+A - Acessibilidade		
+		
+Boa Prática 20: Fornecer acesso em tempo real		
+Quando os dados forem produzidos em tempo real, disponibilize-os na Web em tempo real ou quase em tempo real.		
+		
+Por que		
+A presença de dados em tempo real na Web viabiliza o acesso a dados críticos sensíveis ao tempo e incentiva o desenvolvimento de aplicações Web em tempo real. O acesso em tempo real depende de que os produtores de dados em tempo real disponibilizem seus dados prontamente ao editor de dados. A necessidade de fornecer acesso em tempo real para uma determinada aplicação precisará ser avaliada caso a caso, considerando as taxas de atualização, a latência introduzida pelos passos de pós-processamento de dados, a disponibilidade de infraestrutura e os dados de que os consumidores necessitam. Além de tornar os dados acessíveis, os publicadores de dados podem fornecer informações adicionais descrevendo lacunas, erros e anomalias de dados e atrasos de publicações.		
+		
+Resultado Pretendido		
+As aplicações serão capazes de acessar dados temporalmente críticos em tempo real ou quase em tempo real, onde tempo real significa um intervalo de milissegundos até poucos segundos após a criação dos dados. 		
+		
+Abordagem Possível para Implementação		
+Uma possível abordagem para implementação é que os editores configurem um Serviço da Web que forneça uma conexão de forma que, ao receberem dados em tempo real pelo Serviço da Web, estes possam ser instantaneamente disponibilizados aos consumidores por polling ou streaming. Caso os dados sejam verificados com pouca frequência pelos consumidores, os dados em tempo real poderão ser consultados após solicitação do consumidor para os dados dados mais recentes por meio de uma API. Os publicadores de dados fornecerão uma API para facilitar estas solicitações somente de leitura. Caso os dados sejam verificados com frequência pelos consumidores, uma implementação de dados por streaming poderá ser mais apropriada quando os dados forem enviados por meio de uma API. Embora as técnicas de streaming estejam além do escopo desta boa prática, há muitos protocolos e tecnologias padronizados disponíveis (por exemplo, Eventos Enviados pelo Servidor, WebSocket, EventSourceAPI) para clientes que recebem atualizações automáticas do servidor.		
+		
+EXEMPLO 20		
+Neste exemplo, o Departamento de Transportes de MyCity mantém um registro de todos os dados GPS dos ônibus. A API fornece aos consumidores informações de status em tempo real usando uma API REST. A API permite que o consumidor selecione:		
+Atual localização do ônibus		
+Tempo de chegada do ônibus		
+Status do ônibus		
+		
+Descrição da API		
+Descrição	API	Parâmetros
+Posição do ônibus	{root}/bus/position/current	bus_id
+Tempo de chegada do ônibus a um determinado ponto de ônibus	{root}/bus/arrival_time	bus_id, stop_id
+Status do ônibus (Possibilidade de retorno: “no horário”, “atrasado”, “fora de serviço”)	{root}/bus/status	bus_id
+		
+Como Testar		
+Para testar acesso de dados em tempo real adequadamente, os dados terão que ser rastreados desde o instante em que são inicialmente coletados até o momento em que são publicados e acessados. [PROV-O] pode ser usado para descrever estas atividades. Deve-se tomar cuidado ao analisar acesso em tempo real para sistemas compostos de vários sistemas de computador. Por exemplo, testes que dependam de marcas temporais de relógios de parede podem refletir inconsistências entre os sistemas de computadores individuais em oposição à latência de tempo de publicação dos dados.		
+		
+Evidência		
+Requisitos Relevantes:  R-AccessRealTime		
+		
+Benefícios		
+R - Reutilização		
+A - Acessibilidade		
+		
+Boa Prática 21: Fornecer dados atualizados		
+Disponibilize os dados de forma atualizada e torne explícita a frequência de atualização		
+		
+Por que		
+A disponibilidade dos dados na Web deve corresponder rigorosamente à data de criação ou coleta dos dados, talvez após estes terem sido processados ou alterados. Sincronizar cuidadosamente a publicação dos dados com a frequência de atualização incentiva a confiança do consumidor e a reutilização dos dados.		
+		
+Resultado Pretendido		
+Os dados na Web serão atualizados em tempo hábil para que os dados disponíveis mais recentes disponibilizados online reflitam em geral os dados mais recentes divulgados por qualquer outro canal. Quando novos dados estiverem disponíveis, serão publicados na Web o mais rapidamente possível.		
+		
+Abordagem Possível para Implementação		
+Novas versões do conjunto de dados podem ser publicadas na Web em uma programação regular, seguindo as Boas Práticas para Versionamento de Dados. A publicação na Web pode fazer parte do processo de liberação de novas versões dos dados. Tornar a publicação na Web um item a ser entregue neste processo e nomear uma pessoa específica como responsável para esta tarefa pode ajudar a prevenir que os dados fiquem desatualizados. Para limitar as expectativas do consumidor por atualizações futuras, você pode incluir um texto inteligível por humanos com a frequência esperada de publicação e também fornecer metadados inteligíveis por máquinas indicando a frequência.		
+		
+EXEMPLO 21		
+Suponha que a frequência de atualização do conjunto de dados dos pontos de ônibus seja anual. Para descrever a frequência com que novos dados são adicionados ao conjunto de dados, pode ser utilizada a propriedade dct:accrualPeriodicity. Para refletir o cronograma atualizado dos dados, é criada uma nova versão do conjunto de dados (stops-2016-05-05). É importante notar que novas versões podem ser criadas antes da data programada, porém o editor deve assegurar-se de que versões adicionais sejam publicadas na Web tão prontamente quanto as versões equivalentes programadas.		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Como testar		
+Verifique se a frequência das atualizações encontra-se declarada e a última cópia publicada na Web não seja mais antiga do que a data prevista pela frequência de atualização declarada.		
+		
+Evidência		
+Requisitos relevantes: R-AccessUptodate		
+		
+Benefícios		
+R- Reutilização		
+A - Acessibilidade		
+		
+Boa Prática 22: Fornecer uma justificativa para dados não disponíveis		
+Para dados não disponibilizados, forneça uma explicação como podem ser acessados e quem pode fazê-lo.		
+		
+Por que		
+Publicar documentação online sobre dados não disponíveis fornece meios para que os publicadores identifiquem explicitamente lacunas de conhecimento. Isto fornece uma explicação contextual para comunidades de consumidores e desta forma incentiva o uso dos dados que estão disponíveis.		
+		
+Resultado Pretendido		
+Os consumidores saberão que os dados referidos, extraídos do conjunto de dados corrente, não estão disponíveis ou podem ser disponibilizados sob condições diferentes.		
+		
+Abordagem Possível para Implementação		
+Dependendo do contexto máquina/humanos, existem várias maneiras de indicar indisponibilidade de dados. Os publicadores de dados podem publicar um documento em HTML –  que dá uma explicação inteligível por humanos para a indisponibilidade de dados. Da perspectiva da interface de aplicação de uma máquina, podem ser utilizados códigos de status HTTP apropriados, com mensagens personalizadas e inteligíveis por humanos. Exemplos dos códigos de status incluem: 303 (veja outros), 410 (removido permanentemente), 503 (serviço *fornecer dados* não disponível).		
+		
+EXEMPLO 22		
+O conjunto de dados criado para os pontos de ônibus pode conter dados sensíveis de informações sobre o motorista do ônibus, por exemplo. Neste caso o editor fornece uma justificativa informando aos usuários em potencial que os dados pessoais sobre o motorista de ônibus não estão disponíveis.		
+		
+Como testar		
+Onde o  conjunto de dados incluir referências a dados que não estejam mais disponíveis ou não estejam disponíveis para todos os usuários, verifique se são concedidas explicações sobre o que está faltando e instruções para obter acesso (se possível). Verifique se um código de resposta HTTP legítimo é recebido na faixa de 400 ou 500 ao tentar obter dados indisponíveis.		
+		
+Evidência		
+Requisitos Relevantes:  R-AccessLevel, R-SensitivePrivacy, R-SensitiveSecurity		
+		
+Benefícios		
+R- Reutilização		
+C - Confiança		
+		
+8.10.1 APIs de Acesso de Dados		
+		
+Boa Prática 23: Disponibilizar dados por meio de uma API		
+Ofereça uma API para servir os dados caso você tenha recursos para tanto.		
+		
+Por que		
+Uma API oferece aos consumidores de seus dados maior flexibilidade e processabilidade. Ela pode habilitar o uso de dados em tempo real, realizar filtragens a partir de solicitações e tem a capacidade de trabalhar com os dados em um nível atômico. Caso o seu conjunto de dados seja extenso, frequentemente atualizado ou altamente complexo, é provável que uma API seja a melhor opção para publicar seus dados.		
+		
+Resultado Pretendido		
+Os desenvolvedores terão acesso programático aos dados para usar em suas próprias aplicações, com os dados atualizados e sem exigir esforço por parte dos consumidores. As aplicalções da Web terão a capacidade de obter dados específicos consultando uma interface programática.		
+		
+Abordagem possível para implementação		
+Criar uma API é um pouco mais complexo do que publicar dados para download. Demanda algum conhecimento de como construir uma aplicação da Web. No entanto, não é necessário construir uma a partir do zero. Caso utilizar uma plataforma de gerenciamento de dados, tal como a CKAN, você poderá habilitar uma API já existente. Muitas estruturas de desenvolvimento da Web incluem suporte para APIs e também existem estruturas projetadas especificamente para a construção de APIs personalizadas.		
+Rails (Ruby), Django (Python) e Express (NodeJS) são alguns exemplos de estruturas de desenvolvimento da Web que oferecem suporte para criação de APIs. Exemplos de estruturas API incluem Swagger, Apigility, Restify e Restlet.		
+		
+EXEMPLO 23		
+Além de fornecer downloads de dados em massa sobre transporte público, Adrian decide oferecer um mecanismo mais flexível para o acesso aos dados. Para tanto ele desenvolve uma API para oferecer acesso aos pontos de ônibus, às rotas de ônibus e às informações em tempo real sobre os pontos de ônibus. Consulte os exemplos deste uso.		
+		
+Como testar		
+Verifique se um cliente de teste pode simular chamadas que a API responda como previsto.		
+		
+Evidência		
+Requisitos Relevantes:  R-AccessRealTime, R-AccessUpToDate		
+		
+Benefícios		
+R - Reutilização		
+P - Processabilidade		
+I - Interoperabilidade		
+A - Acessibilidade		
+		
+Boa Prática 24: Utilizar Padrões da Web como base para as APIs 		
+Ao desenvolver APIs, utilize um estilo arquitetural que tenha por base as tecnologias da própria Web.		
+		
+Por que		
+As APIs construídas nos padrões da Web alavancam as forças da Web. Por exemplo, utilizar verbos HTTP como métodos e URLs que se orientam diretamente a recursos individuais, ajuda a evitar o acoplamento estreito entre solicitações e respostas, assim produzindo uma API que é de simples manutenção e pode ser facilmente compreendida e utilizada por muitos desenvolvedores. A apatridia da Web pode ser um reforço na permissão de um escalonamento rápido, e o uso da hipermídia possibilita ricas interações com a sua API.		
+		
+Resultado Pretendido		
+Desenvolvedores com alguma experiência em APIs com base nos padrões da Web, como REST, terão um entendimento inicial de como utilizar a API. A manutenção da API será também mais fácil.		
+		
+Abordagens possíveis para implementação		
+REST (REpresentational State Transfer)[Fielding][Richardson] é um estilo arquitetônico que, quando usado em uma API da Web, tira proveito da arquitetura da própria Web. Uma discussão completa sobre como criar uma API RESTful está além do escopo deste documento, porém existem muitos recursos e uma comunidade forte que pode auxiliar a iniciar este trabalho. Ademais há muitas estruturas de desenvolvimento RESTful disponíveis. Caso você já esteja usando uma estrutura de desenvolvimento da Web que suporte a construção de APIs REST, considere o uso desta. Caso contrário, considere uma estrutura somente de API que utilize REST.		
+Outro aspecto da implementação a considerar é fazer uma API de hipermídia, uma que responda com links bem como com dados. São os links que tornam a Web uma rede e APIs de dados podem ser mais úteis e utilizáveis com a inclusão de links nas suas respostas. Os links podem oferecer recursos adicionais, documentação e navegação. Mesmo para uma API que não atenda a todas as restrições do REST, retornar links nas respostas pode resultar em um serviço rico e autodocumentado.      		
+		
+EXEMPLO 24		
+Um exemplo de resposta para a solicitação de informações sobre uma determinada rota de ônibus fornecida por uma API de hipermídia pode ter a seguinte aparência:		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Como testar		
+Verifique se o serviço evita a utilização do http como um canal de chamadas destinadas a métodos personalizados, e verifique se os URLs não contêm nomes de métodos.		
+		
+Evidência		
+Requisitos Relevantes:  R-APIDocumented, R-UniqueIdentifier		
+		
+Benefícios		
+R - Reutilização		
+C - Conectividade		
+I - Interoperabilidade		
+E - Encontrabilidade		
+A - Acessibilidade		
+P - Processabilidade		
+		
+Boa Prática 25: Fornecer a documentação completa para sua API 		
+Forneça informações completas na Web sobre sua API. Atualize a documentação conforme adicionar características ou introduzir modificações.		
+		
+Por que		
+Os desenvolvedores são os principais consumidores de uma API e a documentação é a primeira indicação sobre a qualidade e utilidade da mesma. Quando a documentação da API é completa e fácil de compreender, os desenvolvedores provavelmente ficarão mais dispostos a continuar utilizando-a. Fornecer a documentação de forma abrangente em um único lugar permite que os desenvolvedores possam codificar com eficiência.  Realçar as modificações proporciona aos usuários que aproveitem os novos recursos e ajustem seus próprios códigos, se necessário.		
+		
+Resultado Pretendido		
+Os desenvolvedores serão capazes de obter informações detalhadas sobre cada chamada à API, inclusive os parâmetros que suporta e quais se espera que retorne, como por exemplo, o conjunto completo das informações referentes à API. O conjunto de valores – como utilizá-la, aviso de modificações recentes, informações de contato e assim por diante – deve ser descrito e facilmente navegável na Web. Isto irá permitir também que as máquinas acessem a documentação da API de forma a auxiliar os desenvolvedores a construir um software API para os clientes.  		
+		
+Abordagem Possível para Implementação		
+Uma referência típica de API fornece uma lista abrangente das chamadas que a API pode suportar, com a descrição do propósito de cada uma, detalhando os parâmetros que esta permite, assim como quais retorna, e dando um ou mais exemplos de seu uso. Uma tendência interessante na documentação de API é fornecer um formulário no qual os desenvolvedores possam inserir chamadas específicas para testes, para ver o que a API retorna para seus casos de utilização. Já existem ferramentas disponíveis para criar este tipo de documentação de forma rápida, como  Swagger, io-docs, OpenApis e outras. É importante dizer que a API também deve ser autodocumentada, de forma que as chamadas retornem informações úteis sobre erros e utilização. Os usuários da API devem poder entrar em contato com os mantenedores com perguntas, sugestões ou relatórios de bugs. A qualidade da documentação também está relacionada ao uso e feedback dos desenvolvedores. Tente obter feedbacks constantes de seus usuários sobre documentação. 		
+		
+		
+EXEMPLO 25		
+Visando ajudar os desenvolvedores, o Departamento de Transportes oferece uma documentação completa sobre a API que fornece acesso a dados sobre pontos de ônibus e rotas. A  documentação da API inclui uma lista das chamadas suportadas pela API, os respectivos parâmetros e alguns exemplos.		
+		
+Como testar		
+Verifique se todas as chamadas habilitadas por sua API estão descritas na sua documentação. Assegure-se de estar fornecendo detalhes sobre quais parâmetros são necessários e quais são opcionais, e o que cada chamada retorna. Verifique o Tempo para a Primeira Chamada Bem Sucedida (por exemplo, ser capaz de fazer um pedido com sucesso à API em poucos minutos aumentará as possibilidades do desenvolvedor continuar a usar a sua API).		
+		
+		
+Evidência		
+Requisitos Relevantes:  R-APIDocumented		
+		
+Benefícios		
+R- Reutilização		
+C- Confiabilidade		
+		
+Boa Prática 26: Evitar Modificações que Quebrem sua API		
+Evite modificações à sua API que quebrem o código do cliente e, quando houver evolução, informe seus desenvolvedores sobre quaisquer modificações feitas na sua API.		
+		
+		
+Por que		
+Quando desenvolvedores implementam um cliente à sua API, podem estar contando com características específicas que você incorporou à API, tais como o esquema ou o formato de uma resposta. Evitar modificações que quebrem sua API minimiza a quebra no código do cliente. Comunicar as modificações quando estas ocorrerem permite aos desenvolvedores beneficiarem-se de novos recursos e, no caso raro em que haja uma modificação que quebre a API, tomem providências.		
+		
+Resultado Pretendido		
+O código do desenvolvedor continuará a operar. O desenvolvedor irá saber das melhorias que você implementou e poderá utilizá-las. Modificações que quebrem sua API serão raras e, caso sejam necessárias, os desenvolvedores terão tempo e informação suficientes para ajustar seus códigos. Isto os possibilitará evitar as quebras, aumentando a confiança. Modificações à API serão anunciadas no site de documentação da API.		
+		
+Abordagem Possível para Implementação		
+Ao enriquecer sua API, concentre-se em adicionar novas chamadas ou novas opções em vez de modificar a maneira como as chamadas existentes operam. Os clientes existentes podem ignorar tais modificações e continuarão a funcionar.		
+		
+Caso estiver usando um estilo RESTful de forma integral, você deve ser capaz de evitar modificações que afetam os desenvolvedores, mantendo URIs de recurso constantes e modificar somente elementos que seus usuários não codifiquem diretamente. Caso precise alterar seus dados de uma maneira não compatível com os pontos de extensão que você projetou inicialmente, então será necessário um design completamente novo - e isto significa modificações que quebram o código do cliente. Neste caso é melhor implementar as alterações como uma nova REST API, com um URI de recurso diferente. 		
+Se você está utilizando um estilo de arquitetura que não permite fazer alterações moderadamente significantes sem quebrar o código do cliente, utilize o versionamento. Indique a versão no cabeçalho de resposta. Os números da versão devem estar refletidos em seus URIs ou nos cabeçalhos de solicitação de “aceite” (usando negociação do conteúdo). Ao utilizar o versionamento nos URIs, inclua o número da versão o mais à esquerda o possível.  Mantenha a versão anterior disponível para os desenvolvedores cujos códigos ainda não foram adaptados à nova versão.		
+		
+EXEMPLO 26		
+Alguns exemplos de modificações que quebram uma API são:		
+Remover uma chamada;		
+Alterar o método usado para fazer uma chamada;		
+Alterar o URI de um recurso utilizado em uma chamada;		
+Adicionar um parâmetro necessário para uma chamada;		
+Alterar o tipo de dado de um parâmetro;		
+Alterar o nome de uma chave em uma resposta valor-chave;		
+Alterar a estrutura de uma resposta XML		
+Alterar o tipo de dado de um valor em uma resposta; como, por exemplo, alterar um string para um arranjo.		
+		
+Suponha que a API do Departamento de Trânsito de MyCity responda a uma solicitação sobre o horário de chegada de um determinado ônibus a uma estação como  http://data.mycity.example.com/transport/api/arrivals/buses/53/stop/12, porém o Departamento decide que quer que seja possível consultar sobre diversas paradas de uma só vez. Em vez de alterar o formulário de solicitação para pedir uma série, como em http://data.mycity.example.com/transport/api/arrivals/buses/53/stop/12-12, o Departamento pode manter a antiga chamada da API e adicionar uma nova para chegadas múltiplas, como http://data.mycity.example.com/transport/api/arrivals/buses/53/stops/1-12		
+Para notificar aos usuários diretamente sobre as modificações, é uma boa ideia criar uma lista de discussão e incentivar os desenvolvedores a subscreverem-se. Por este meio, você poderá anunciar modificações e proporcionar também um bom mecanismo para receber feedbacks. Ademais a lista permite que os usuários ajudem-se mutuamente.		
+		
+Como testar		
+Libere modificações inicialmente para uma versão de teste da sua API antes de inseri-las na versão de produção. Convide os desenvolvedores a testar suas aplicações na versão de teste e  fornecer feedbacks.		
+		
+Evidência		
+Requisitos Relevantes:  R-PersistentIdentification, R-APIDocumented		
+		
+Benefícios		
+C- Confiança		
+I - Interoperabilidade		
+		
+8.11 Preservação de Dados		
+		
+O grupo de trabalho reconhece que não é realista assumir que todos os dados da Web estarão disponíveis, sob demanda, o tempo todo até um futuro indefinido. Por uma ampla gama de motivos, os editores provavelmente irão querer ou precisar remover dados da Web ao vivo – ponto o qual foge do escopo do presente trabalho para entrar na área dos arquivistas de dados.O que faz parte do escopo aqui, no entanto, é o que é deixado para trás - isto é, quais passos devem ser dados pelos publicadores para indicar quais dados foram removidos ou arquivados. Simplesmente delatar um recurso da Web é uma má prática. Nesta circunstância, desreferenciar o URI conduziria a um código de resposta HTTP 404, que simplesmente informa ao usuário que o recurso não foi encontrado – nada além disto.  As Boas Práticas a seguir oferecem abordagens mais produtivas.		
+		
+Boa Prática 27: Preservar os identificadores		
+Ao remover dados da Web, preserve o identificador e forneça informações sobre o recurso arquivado. 		
+		
+Por que		
+O desreferenciamento do URI é a interface primária para os dados na Web. Caso o desreferenciamento de um URI conduza ao infame código 404 (Não Encontrado), o usuário não saberá se a falta de disponibilidade é permanente ou temporária, planejada ou acidental. Caso o editor ou um terceiro tenha arquivado o dado, é muito menos provável que aquela cópia arquivada possa ser encontrada se o URI esteja efetivamente quebrado.		
+		
+Resultado Pretendido		
+O URI de um recurso irá sempre desreferenciar para o recurso ou redirecionar para informações a respeito.		
+		
+Abordagem Possível para Implementação		
+Há dois cenários a considerar:		
+		
+O recurso foi totalmente deletado e não está mais disponível através de nenhuma rota;		
+O recurso foi arquivado e está disponível somente por meio de uma solicitação ao arquivo.		
+		
+No primeiro caso, o servidor deve ser configurado para responder com um código de Resposta HTTP 410 (Perdido).  A partir da especificação:		
+		
+A resposta 410 destina-se principalmente a auxiliar na tarefa de manutenção da Web notificando o recipiente de que o recurso encontra-se intencionalmente indisponibilizado e os proprietários do servidor desejam que os links remotos para este recurso sejam removidos.		
+		
+No segundo caso, em que os dados tenham sido arquivados, é mais apropriado redirecionar as solicitações para uma página da Web que forneça informações sobre o arquivo no qual os dados estão armazenados e como um usuário em potencial pode acessá-lo.		
+		
+Em ambos os casos, o URI original continua identificando o recurso e apontando para informações úteis - mesmo que o dado já não se encontre diretamente disponível.		
+		
+EXEMPLO 27		
+Adrian decide arquivar versões de dados de pontos de ônibus que tenham sido substituídas por versões mais recentes há pelo menos um ano – como a versão de 30-03-2012. O servidor é configurado de tal forma que as solicitações para o conjunto de dados de março de 2012 sejam redirecionadas a uma página da Web, utilizando um Código HTTP 303, que inclui a seguinte notificação:		
+		
+Arquivado		
+Os dados que você solicitou foram arquivados. Isto está de acordo com a política de MyCity de arquivamento de dados substituídos há mais de 12 meses. No entanto, pode-se solicitar uma cópia a qualquer momento por meio da página de contato.		
+		
+Como Testar		
+Garanta que a desreferência de um URI de um conjunto de dados que não esteja mais disponível retorne informações tanto sobre a situação atual quanto sobre a disponibilidade do conjunto de dados em questão - seja utilizando o código de resposta 410 ou o código 303, conforme o mais apropriado.		
+		
+Evidência		
+Requisitos Relevantes: R-AccessLevel, R-PersistentIdentification		
+		
+Benefícios		
+R - Reutilização		
+C- Confiabilidade		
+		
+Boa Prática 28: Avaliar a cobertura do conjunto de dados		
+Avalie a cobertura de um conjunto de dados antes de sua preservação.		
+		
+Por Que		
+Uma bloco de dados da Web é, por definição, dependente do resto do gráfico global. Este contexto global influencia o sentido da descrição dos recursos encontrados no conjunto de dados. Idealmente, a preservação de um determinado conjunto de dados envolveria a conservação de todo o seu contexto. Ou seja, toda a Web dos Dados.		
+Na momento de arquivar é necessário avaliar as conexões do descarte do conjunto de dados para recursos já preservados e para os vocabulários utilizados. Conjuntos de dados os quais poucos dos vocabulários utilizados e/ou recursos apontados já se encontram  preservados em algum lugar devem ser assinalados como em risco.		
+		
+Resultado Pretendido		
+Os usuários poderão fazer uso dos dados arquivados por muito tempo.		
+		
+Abordagem Possível para Implementação		
+Verifique se todos os recursos utilizados já se encontram preservados em algum lugar ou precisam ser fornecidos junto com o conjunto de dados que está sendo considerado para preservação.		
+		
+EXEMPLO 28		
+Um conjunto de dados RDF direcionado para preservação consiste dos seguintes  triplos: 		
+http://data.mycity.example.com/transport/route/bus/ABtimetable		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Estes triplos utilizam o vocabulário “gtfs” e um vocabulário personalizado definido no domínio de teste “ex”. Também utilizam entidades definidas em “foaf”, "dbpedia"  e "ex". Embora não sejam padrões formais, FOAF e GTFS [GTFS] são ontologias bem estabelecidas, arquivadas em vários lugares na Web (veja, por exemplo,  o repositório LOV).  Entidades definidas em DBpedia são preservadas por meio de sua gateway Memento e também há descartes arquivados de conjuntos de dados. Os riscos relacionados à preservação do triplo fazendo uso deste recurso externo são mínimos. Uma preocupação maior surge da utilização de recursos definidos em “ex”, um espaço de nome que, por seu design, não existe fora do conjunto de dados. A não ser que as descrições dos dados "ex:usualVehicleType", "ex:Airport_Bullfrog" e "ex:Bullfrog_Furnace_Creek_Resort"  sejam preservadas juntamente com os triplos, seu sentido contextual será perdido. Este fato é especialmente crítico  para "ex:usualVehicleType", pois sem ele a relação entre a rota descrita e os recursos dboedia será desconhecida para uma aplicação de consumidor (por mais óbvio que possa ser para um humano).		
+		
+Considerando esta avaliação, um conjunto de dados revisado, incluindo a definição de "ex:usualVehicleType", pode ser considerado para preservação:		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Este segundo e mais completo conjunto de dados adapta-se melhor à preservação, pois é mais autodescritivo e utiliza somente entidades externas, cuja preservação seja confiável.		
+		
+Como testar		
+Não é possível determinar o que estará disponível em, digamos, 50 anos.  No entanto, pode-se verificar se um conjunto de dados arquivado depende unicamente de recursos e vocabulários externos de ampla utilização. Verifique se as dependências exclusivas ou pouco utilizadas estão preservadas como parte do arquivo.		
+		
+Evidências		
+Requisitos Relevantes: R-VocabReference		
+		
+Benefícios		
+		
+8.12 Feedback		
+		
+Publicar material na Web viabiliza o compartilhamento de dados em grande escala para uma diversidade de públicos com diferentes níveis de perícia. Os publicadores de dados querem garantir que os dados publicados atendam às necessidades dos consumidores de dados e, para esta finalidade, o feedback dos usuários é crucial. O feedback traz benefícios tanto para publicadores como consumidores, ajudando os primeiros a melhorar a integridade de seus dados publicados, assim como incentivando-os a publicar novos dados. O feedback permite aos consumidores de dados terem uma voz descrevendo experiências de uso (por exemplo, aplicações usando dados), preferências e necessidades. Quando possível, o feedback também deve ser disponibilizado publicamente para que outros consumidores de dados possam examiná-lo. Disponibilizar o feedback publicamente permite aos usuários conscientizarem-se de outros consumidores de dados, incentiva um ambiente colaborativo e possibilita que suas experiências comunitárias, preocupações ou perguntas sejam sempre atendidas.		
+Da perspectiva da interface do usuário existem diversas maneiras para coletar feedback dos consumidores de dados, incluindo o registro no site, formulários de contato, seleção de avaliações de qualidade, pesquisas e caixas de comentários para blogs. Sob a perspectiva de de uma máquina, o editor pode também registrar métricas sobre utilização de dados ou informações sobre aplicações específicas que utilizam os dados. Feedbacks como estes estabelecem um canal de comunicação entre editores e consumidores de dados. Feedback disponibilizado publicamente deve ser exibido em um formato inteligível por humanos.		
+Esta seção fornece algumas Boas Práticas a serem seguidas por publicadores de dados visando possibilitar que os consumidores deem feedback. Tal feedback pode servir para humanos ou máquinas.		
+		
+Boa Prática 29: Coletar feedback de consumidores de dados		
+Fornecer meios facilmente encontráveis para que os consumidores deem feedback.		
+		
+Por que		
+Receber feedback ajuda os publicadores a compreender as necessidades de seus consumidores de dados, além de auxiliá-los a melhorar a qualidade de seus dados publicados. Também aumenta a confiabilidade ao demonstrar aos consumidores que o editor se importa e preocupa-se em atender à suas necessidades. Especificar claramente um mecanismo de feedback remove a inconveniência para o consumidor de ter que procurar uma maneira de fornecer feedback.		
+		
+Resultado Pretendido		
+Os consumidores de dados poderão fornecer feedback e avaliações sobre os conjuntos de dados e distribuições.		
+		
+Abordagem Possível para implementação.		
+Forneça aos consumidores de dados um ou mais mecanismos para o envio de feedback, incluindo (mas não limitando a) um formulário de contato, teclas de apontar ou clicar para avaliação de qualidade de dados ou uma caixa de comentários. Para aproveitar ao máximo o feedback recebido de consumidores, uma boa ideia é coletá-lo por meio de um sistema de rastreamento que captura cada item em uma base de dados, assim permitindo quantificação e análise. Outra boa ideia é a captura por tipo de item de feedback; por exemplo, sua motivação (edição, classificação [avaliação], comentário ou questionamento), de maneira que cada item possa ser expresso utilizando o Vocabulário de Uso de Conjuntos de Dados [VOCAB-DUV].		
+		
+EXEMPLO 29		
+Exemplo de formulário de feedback		
+		
+Como testar		
+Verifique se pelo menos um mecanismo de feedback foi fornecido e se este pode ser facilmente encontrável por consumidores de dados.		
+		
+Evidência		
+Requisitos Relevantes:  R-UsageFeedback, R-QualityOpinions		
+		
+Benefícios		
+R - Reutilização		
+C- Compreensão		
+C - Confiabilidade		
+		
+Boa Prática 30: Disponibilizar feedback         		
+Disponibilize publicamente mecanismos de feedback de consumidor sobre conjuntos de dados e distribuições.		
+		
+Por que		
+Ao compartilhar feedback com consumidores, os publicadores demonstram aos usuários que suas considerações estão sendo levadas em conta, e podem evitar o envio de relatórios de bug duplicados. Compartilhar feedback também ajuda os consumidores a compreender quaisquer questões que possam afetar sua capacidade de utilizar dados, assim como fomenta um sentido de comunidade entre eles.		
+		
+Resultado Pretendido		
+Os consumidores serão capazes de avaliar os tipos de erros que afetam o conjunto de dados, analisar as experiências de outros usuários com o mesmo e assegurar-se de que o editor está abordando ativamente os problemas conforme o necessário. Também poderão determinar se outros usuários já forneceram feedbacks semelhantes, aliviando-os do trabalho de enviar relatórios desnecessários e evitando que os mantenedores tenham que lidar com duplicidade. 		
+		
+Abordagem Possível para a Implementação		
+O feedback pode ficar disponível como parte de uma página da Web em HTML, mas também pode ser fornecido em um formato inteligível por máquinas utilizando o Vocabulário de Uso de Conjuntos de Dados [VOCAB-DUV]		
+		
+EXEMPLO 30		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Como Testar		
+Verifique se qualquer feedback fornecido por consumidores de dados para um determinado conjunto de dados ou distribuição esteja publicamente disponível.		
+		
+Evidência		
+Requisitos Relevantes:   R-UsageFeedback, R-QualityOpinions		
+		
+Benefícios		
+R - Reutilização		
+C - Confiabilidade		
+		
+8.13 Enriquecimento de dados		
+Enriquecimento de dados refere-se a um conjunto de processos que pode ser utilizado para aperfeiçoar, aprimorar ou de outro modo melhorar dados brutos ou dados previamente processados. Esta ideia e outros conceitos semelhantes contribuem para tornar os dados um bem valioso para quase todas as empresas ou empreendimentos modernos. É um tema diverso em si, cujos detalhes vão além do escopo deste documento. No entanto, vale a pena notar que algumas destas técnicas devem ser abordadas com cautela, pois preocupações éticas podem surgir. Na pesquisa científica, cuidados devem ser tomados para evitar que o enriquecimento distorça resultados ou conclusões estatísticas. Em se tratando de dados sobre indivíduos, questões de privacidade podem surgir quando conjuntos de dados são combinados. Ou seja, enriquecer um conjunto de dados com outro, quando nenhum dos dois contém informações suficientes sobre qualquer indivíduo a ponto de identificá-lo, pode resultar em um conjunto de dados combinado que comprometa a privacidade. Além disso, estas técnicas podem ser realizadas em escala, o que por sua vez realça a necessidade de cautela.		
+		
+Este seção fornece algumas recomendações a serem observadas por editores de dados com a finalidade de enriquecimento de dados.		
+		
+Boa Prática 31: Enriquecer dados por meio da geração de novos dados		
+Enriqueça seus dados gerando novos dados, pois ao fazê-lo você estará aumentando o valor dos mesmos.		
+		
+Por que		
+O enriquecimento pode acentuar consideravelmente a processabilidade, especialmente no caso de dados não estruturados. Em algumas circunstâncias, valores faltantes podem ser adicionados e novas atribuições e mensurações podem ser acrescentadas a partir de dados brutos pré-existentes. Conjuntos de dados também podem ser enriquecidos por meio da coleta de resultados adicionais da mesma forma como os dados originais ou combinando dados originais  com outros conjuntos de dados. Publicar conjuntos de dados mais completos pode aumentar a confiabilidade, se feito de maneira adequada e ética. Derivar valores adicionais que sejam de utilidade geral economiza tempo para o usuário e incentiva mais tipos de reutilização. Há muitas técnicas inteligentes que podem ser usadas para enriquecer dados, tornando o conjunto de dados um bem ainda mais valioso.		
+		
+Resultado Pretendido		
+Conjuntos de dados com dados faltantes serão melhorados por meio do preenchimento desses valores.  A estrutura será verificada e a utilidade aumentada caso providências ou atributos relevantes sejam adicionados, porém somente se a adição não distorcer os resultados analíticos, a significância ou a potência estatística.		
+		
+Abordagem Possível para Implementação		
+As técnicas para o enriquecimento de dados são complexas e se estendem além do escopo deste documento, que pode somente sublinhar tais possibilidades.		
+A aprendizagem de máquina pode ser facilmente aplicada ao enriquecimento de dados. Os métodos incluem aqueles focalizados na categorização de dados, desambiguação, reconhecimento de entidades, análise de sentimentos e topificação, entre outros. Novos valores de dados podem ser derivados tão simplesmente quanto executar um cálculo matemático por meio de colunas existentes. Outros exemplos incluem a inspeção visual para identificar recursos em dados espaciais e a referência cruzada a bancos de dados externos para informações demográficas. E por último, a geração de novos dados pode ser impulsionada por demanda, onde valores faltantes são calculados ou determinados de forma direta.		
+		
+Valores gerados a partir de técnicas com base em inferência devem ser etiquetados como tal, e deve ser possível recuperar qualquer valor original substituído por enriquecimento. 		
+Sempre que o licenciamento permitir, o código usado para enriquecer os dados deve estar disponível junto com o conjunto de dados. Compartilhar tal código é particularmente importante para dados científicos. 		
+		
+A priorização das atividades de enriquecimento deve ser determinada pelo valor para o consumidor de dados, bem como pelo esforço necessário. O valor para o consumidor pode ser avaliado pela mensuração da demanda (por exemplo, por meio de pesquisas ou pelo rastreio de pedidos diretos). Documentar como você mensura a demanda pode tornar demonstrável o valor agregado.		
+Caso você venha a enriquecer os dados de outra pessoa, seria prudente oferecer esses enriquecimentos de volta ao editor original.		
+		
+EXEMPLO 31		
+O Departamento de Transportes de MyCity possui endereços físicos para cada um de seus pontos de ônibus. O Departamento quer facilitar a vida dos consumidores de seus dados ao combinar esta informação com mapas, de forma a adicionar informações de latitude e longitude para cada ponto, utilizando uma base de dados geográfica.  		
+		
+O Departamento de Trânsito possui uma vasta coleção de correspondência de e-mails enviados por usuários. Parte destes e-mails contém elogios, outros reclamações e alguns são pedidos de informação. O Departamento realiza uma combinação de análise de sentimentos e categorização de forma a extrair metadados para cada uma das mensagens, tais como modal de transporte, numeração da rota e positividade do passageiro para criar um conjunto de dados semiestruturado.  		
+		
+Como Testar		
+Verifique se não há valores faltantes no conjunto de dados ou campos adicionais prováveis de serem necessitados por outros, que poderiam ser facilmente fornecidos. Verifique se qualquer dado adicionado por técnicas de enriquecimento inferencial esteja identificado como tal, e se quaisquer dados substituídos ainda estejam disponíveis.		
+		
+Evidência		
+Requisitos Relevantes:  R-DataEnrichment, R-FormatMachineRead, R-ProvAvailable		
+		
+Benefícios		
+R- Reutilização		
+C - Compreensão		
+C - Confiabilidade		
+P - Processabilidade		
+		
+Boa Prática 32: Fornecer Apresentações Complementares		
+Enriqueça seus dados apresentando-os em formas complementares e imediatamente informativas, tais como visualizações, tabelas, aplicações da Web ou resumos.		
+		
+Por que		
+Dados publicados online destinam-se a informar terceiros sobre seu assunto. Porém, apenas publicar conjuntos de dados para download ou acesso à API relega ao consumidor o esforço de interpretá-los. A Web oferece oportunidades sem paralelos para a apresentação de dados de forma a permitir que os usuários aprendam e explorem sem ter que criar suas próprias ferramentas.		
+		
+Resultado Pretendido		
+Apresentações complementares dos dados irão permitir a consumidores humanos ter uma percepção imediata dos dados por meio de apresentações de fácil entendimento.		
+		
+Possível Abordagem para Implementação		
+Uma maneira muito simples de proporcionar percepções imediatas é publicar um resumo analítico em uma página HTML. Incluir dados somativos em gráficos ou tabelas pode ajudar o usuário a explorar o resumo e entender rapidamente o sentido dos dados.		
+Caso você tenha meios de criar visualizações ou aplicações Web interativas que utilizem os dados, estará proporcionando aos seus consumidores uma capacidade ampliada de compreender e descobrir padrões em tais dados. Estas abordagens também demonstram a aptidão dos seus dados para o processamento e estimulam a reutilização.  		
+		
+EXAMPLE 32		
+O Departamento de Trânsito de MyCity publica dados detalhados sobre todas as suas linhas de transporte por meio de uma API, porém o Departamento também tem muitos usuários que não são desenvolvedores da Web e querem saber como usar o sistema para se deslocar na cidade. O Departamento poderá construir uma aplicação Web que permita aos usuários entrar com um endereço de partida e um destino e receber orientações passo a passo para realizar sua viagem por meio do transporte público.		
+		
+Como Testar		
+Verifique se o conjunto de dados se encontra acompanhado de algum conteúdo adicional interpretativo que pode ser percebido sem o download dos dados ou a necessidade de invocar uma API.		
+		
+Evidência		
+Requisitos Relevantes: R-DataEnrichment		
+		
+Benefícios		
+R - Reutilização		
+C - Compreensão		
+A - Acessibilidade		
+C - Confiabilidade		
+		
+8.14 Republicação		
+Reutilizar dados é outra forma de publicar dados; é simplesmente republicá-los. Pode tomar a forma de uma combinação de dados existentes com outros conjuntos de dados, uma criação de aplicações ou visualizações Web, ou uma reembalagem de dados em um novo formato, como uma tradução. Os republicadores têm algumas responsabilidades que são exclusivas desta maneira de publicação na Web. Este seção fornece recomendações que devem ser observadas ao republicar dados.		
+		
+Boa Prática 33: Fornecer Feedback ao Editor Original		
+Informe o editor original quando você está reutilizando seus dados. Informe-o caso encontre um erro ou tenha sugestões ou elogios a tecer.		
+		
+Por que		
+Os publicadores geralmente querem saber se os dados que publicam têm sido úteis. Ademais, eles podem ser obrigados a relatar estatísticas de uso a fim de alocar recursos para atividades de publicação de dados.  Ao informar a destinação dos dados publicados você estará ajudando os publicadores originais a justificar a aplicação de recursos no lançamento de dados. Fornecer feedback recompensa os publicadores por seus esforços e os ajuda diretamente a melhorar seu conjunto de dados para futuros usuários.		
+		
+Resultado Pretendido		
+Uma melhor comunicação tornará mais fácil para os editores originais determinar como os dados que postaram estão sendo usados, o que por sua vez os ajuda a justificar a publicação dos dados. Eles também terão clareza sobre quais medidas podem adotar para melhorar seus dados. Isto conduz a mais e melhores dados para todos.		
+		
+Possível Abordagem para Implementação		
+Quando iniciar a utilização de um conjunto de dados em um produto novo, faça uma nota com o endereço e contato dos publicadores, o URI do conjunto de dados que você utilizou e a data em que os contatou. Isto pode ser feito em comentários dentro do seu código, onde o conjunto de dados é usado. Siga a rota preferida dos publicadores para dar feedback. Caso não forneçam uma rota, procure esta informação de contato no site da Web que hospeda os dados.		
+		
+EXEMPLO 33		
+# Chamar a API de transporte de MyCity, http://data.mycity.example.com/transport/api/docs/		
+# Publicado pelo Departamento de Transportes de  MyCity,		
+# notificado de nossa reutilização por e-mail para opendata@mycitytransit.example.org		
+# por Newton Calegari em 24/03/2016.		
+		
+Como Testar		
+Verifique se você tem um registro de pelo menos uma comunicação informando ao editor sobre a utilização de tais dados.		
+		
+Evidência		
+Requisitos relevantes:  R-TrackDataUsage, R-UsageFeedback, R-QualityOpinions		
+		
+Benefícios		
+R- Reutilização		
+I - Interoperabilidade		
+C - Confiabilidade		
+		
+Boa Prática 34: Seguir os Termos de Licenciamento		
+Encontre e siga os requisitos de licenciamento fornecido pelo editor original do conjunto de dados.		
+		
+Por que		
+O licenciamento fornece uma estrutura jurídica para utilizar o trabalho de outra pessoa. Ao respeitar os requisitos do editor original, você promove relações amigáveis entre você e o editor. Não é necessário preocupar-se com ações jurídicas caso respeite o que o editor original deseja. Além disso, compreender o licenciamento original ajudará a determinar qual licenciamento escolher para sua reutilização.		
+		
+		
+Resultado Pretendido		
+Os publicadores de dados poderão confiar que seus trabalhos estarão sendo utilizados de acordo com as condições de licenciamento, o que provavelmente os estimulará a continuar publicando dados.  Reutilizadores de dados poderão eles próprios licenciar seus trabalhos derivados de maneira adequada.		
+		
+Possível Abordagem para Implementação		
+Leia o licenciamento original e respeite seus requisitos. Caso este solicitar licenciamento específico de trabalhos derivados, tome providências para que sua licença seja compatível com este requisito. Caso nenhuma licença seja fornecida, contate o editor original e pergunte a ele qual é o licenciamento aplicável. 		
+		
+EXEMPLO 34		
+Caso o conjunto de dados que você está utilizando for licenciado sob os termos da Licença Creative Commons Attribution 3.0, você deverá respeitar os termos especificados neste acordo de licenciamento específico.		
+		
+Como testar		
+Leia todo o licenciamento original e certifique-se de que sua utilização dos dados não viola qualquer um de seus termos.		
+		
+Evidência		
+Requisitos Relevantes:  R-LicenseAvailable, R-LicenseLiability,		
+		
+Benefícios		
+R - Reutilização		
+C- Confiabilidade		
+		
+Boa Prática 35: Citar a Publicação Original		
+Reconheça a fonte de seus dados nos metadados. Caso forneça uma interface de usuário, inclua a citação claramente na interface.		
+		
+Por que		
+Dados só são úteis quando confiáveis. Identificar a fonte é o maior indicativo de confiabilidade por dois motivos: em primeiro lugar, o usuário pode julgar a confiabilidade dos dados a partir da reputação da fonte e, em segundo, citar a fonte sugere que você mesmo é confiável como reeditor. Além de informar o usuário final, citar ajuda os editores dando crédito ao seu trabalho.  publicadores que disponibilizam dados na Web merecem reconhecimento e ficam mais propensos a continuar compartilhando seus dados caso percebam que estão sendo creditados. A citação também mantém a proveniência e ainda ajuda outros a trabalhar com os dados.		
+		
+Resultado Pretendido		
+Usuários finais poderão avaliar a confiabilidade dos dados que estão visualizando e os esforços dos publicadores originais serão reconhecidos. Também será possível rastrear a origem dos dados na Web até o editor original.		
+		
+Possível Abordagem para Implementação		
+A citação da fonte original pode ser apresentada em uma interface de usuário fornecendo o texto bibliográfico e um link operável.		
+		
+EXEMPLO 35		
+Fonte dos dados: Departamento de Transportes de MyCity. "Horário de ônibus de MyCity" (séries 1.2). MyCity. 05 de maio de 2015. Disponível em: http://data.mycity.example.com/transport/dataset/bus/stops.		
+		
+Como testar		
+Verifique se a fonte original de quaisquer dados reutilizados se encontra citada nos metadados fornecidos. Verifique se há uma citação inteligível por humanos claramente visível em qualquer interface de usuário.		
+		
+		
+Evidência:		
+Requisitos Relevantes: R-Citable, R-ProvAvailable, R-MetadataAvailable, R-TrackDataUsage		
+		
+Benefícios		
+R - Reutilização		
+E - Encontrabilidade		
+C - Confiabilidade		
+		
+9. Glossário		
+Esta seção não é normativa		
+		
+Citação		
+Uma Citação pode ser direta e explícita (como uma lista de referências de um artigo de periódico), indireta (como, por exemplo, a citação a um documento mais recente do mesmo grupo de pesquisa sobre o mesmo assunto) ou implícita (como em citações artísticas, paródias ou em casos de plágio).		
+De:    CiTO, the Citation Typing Ontology.		
+		
+Arquivamento de dados		
+O arquivamento de dados é um conjunto de práticas em torno do armazenamento e monitoramento do estado do material digital ao longo dos anos.		
+Estas tarefas são de responsabilidade de um Repositório Digital Confiável (TDR), também chamado ocasionalmente de Serviço de Arquivamento de Longo Prazo (LTA). Muitas vezes, tais serviços seguem o Sistema de Informação de Arquivos Abertos, que define o processo de arquivamento em termos de consumo, monitoramento e reutilização de dados.		
+		
+Consumidor de Dados		
+Para os fins deste Grupo de Trabalho, um Consumidor de Dados é uma pessoa ou um grupo acessando, usando, e potencialmente executando passos pós-processamento nos dados. De: Strong, Diane M., Yang W. Lee, e Richard Y. Wang. Data quality in context. Communications of the ACM 40.5 (1997): 103-110.		
+		
+		
+Formato de Dados		
+O Formato de Dados é definido como uma convenção específica para a representação de dados; por exemplo, a maneira em que os dados são codificados e armazenados  para utilização em  um sistema de computação, possivelmente constrito por um tipo formal de dados ou um grupo de padrões. 		
+De: Digital Humanities Curation Guide		
+		
+Preservação de dados		
+A Preservação de Dados é definida pela Aliança pelo Acesso Permanente à Rede como “Os processos e operações para assegurar a sobrevivência técnica e intelectual de objetos através do tempo”. Isto faz parte de um plano de gerenciamento de dados com foco no planejamento da preservação e nos metadados. Avaliar se vale a pena esforçar-se pela preservação depende do valor (futuro) dos dados, dos recursos disponíveis e da opinião da comunidade designada de atores.		
+		
+Produtor de dados		
+O Produtor de Dados é uma pessoa ou um grupo responsável pela geração e manutenção de dados. De: Strong, Diane M., Yang W. Lee, e Richard Y. Wang. Data quality in context. Communications of the ACM 40.5 (1997): 103-110.		
+		
+		
+Proveniência de dados		
+Proveniência deriva do termo francês provenir (vir de), usado para descrever o processo de curadoria  de objetos de arte quando são passados de proprietário para proprietário. De forma semelhante, a proveniência de dados é um metadado que permite que os provedores de dados passem detalhes sobre o histórico de dados aos usuários.		
+		
+Qualidade de dados		
+A qualidade de dados é habitualmente definida como “aptidão para uso” para uma aplicação específica ou um caso de uso.		
+		
+Conjunto de dados		
+Define-se um conjunto de dados como uma coleção de dados, publicados ou curados por um único operador e disponíveis para acesso ou download em um ou mais formatos. Um conjunto de dados não tem que ser disponibilizado como arquivo para download.		
+De:  Data Catalog Vocabulary (DCAT) (DCAT) [VOCAB-DCAT]		
+		
+Distribuição		
+Uma distribuição representa um determinado formato disponível de um conjunto de dados. Cada conjunto de dados pode ser disponibilizado em diferentes formatos; estes podem representar formatos diferentes do conjunto de dados ou pontos terminais diferentes. Exemplos de distribuições incluem um arquivo CSV para download, uma API ou um feed RSS. 		
+De:  Data Catalog Vocabulary (DCAT) [VOCAB-DCAT]		
+		
+Feedback		
+Utiliza-se um fórum de feedback para coletar mensagens publicadas pelos consumidores sobre um assunto específico. Estas mensagens podem incluir respostas para outros consumidores. Marcas temporais de data são associadas a cada mensagem e as mensagens podem ser associadas a uma pessoa ou submetidas anonimamente.		
+De: Semantically-Interlinked Online Communities (SIOC) e Annotation Model [Annotation-Model].		
+Para compreender melhor por que uma anotação foi criada, um Esquema Conceitual SKOS [SKOS-PRIMER] é utilizado para mostrar anotações inter-relacionadas entre comunidades com diferenciações mais significativas do que uma simples árvore de classe e subclasse.		
+		
+Formato de Arquivo		
+O Formato de Arquivo é uma maneira padronizada por meio da qual a informação é codificada para armazenamento em um arquivo de computador. Ele especifica como os bits são usados para codificar informação em um meio digital de armazenamento. Formatos de arquivos podem ser proprietários ou livres  e também inéditos ou abertos. Exemplos de formatos de arquivos incluem: texto simples (em uma codificação de caracteres especificada, idealmente UTF-8), Comma Separated Variable (CSV) [RFC4180], Portable Document Format [PDF], XML,(v) JSON [RFC4627], Turtle [Turtle] e HDF5.		
+		
+		
+Licenciamento		
+Um licenciamento é um documento jurídico que concede permissão oficial para fazer algo com dados a que se está associado.		
+De:  DCTERMS [DCTERMS]		
+		
+Localidade		
+Uma coleção de preferências internacionais, normalmente relacionadas a um idioma e a uma região geográfica que uma (determinada categoria) de usuários necessita. São geralmente identificadas por um identificador abreviado ou token, tal como uma aba de idioma, que é passada a partir do ambiente para vários processos de forma a obter um comportamento culturalmente afetado.		
+		
+		
+Dados Inteligíveis por máquinas		
+Dados inteligíveis por máquinas são dados em formato padronizado que podem ser lidos e processados automaticamente por um sistema computacional. Documentos tradicionais de processamento de palavras e formato de documento portátil (PDF) são facilmente lidos por humanos, porém normalmente são complicados para interpretação e manipulação por máquinas. Programas tais como XML, JSON, HDF5, RDF e CSV são formatos legíveis por máquinas.		
+Adaptado da Wikipedia		
+		
+Quase em tempo real		
+A expressão “quase em tempo real” ou “praticamente em tempo real” usada em telecomunicações e computação refere-se ao atraso de tempo introduzido pelo processamento automatizado de dados  ou pela transmissão em rede, entre a ocorrência de um evento e o uso dos dados processados, tal como para a finalidade de exibição ou feedback e controle. Por exemplo, uma exibição em quase tempo real mostra um evento ou situação como se esta existisse no momento corrente menos o tempo de processamento, como praticamente no tempo do evento ao vivo.		
+De: Wikipedia		
+		
+Dados sensíveis		
+Dados sensíveis são quaisquer dados ou metadados designados de uso limitado e/ou destinados a públicos limitados. Podem incluir dados pessoais, dados corporativos ou governamentais. Maus tratos a dados sensíveis podem levar a danos a indivíduos ou organizações.		
+		
+Padrão		
+Um padrão técnico é uma norma ou requisito estabelecido a respeito de sistemas técnicos. Normalmente é um documento formal que estabelece critérios técnicos ou de engenharia uniformes, métodos, processos e práticas. Em contraste, um costume, uma convenção, um produto de uma empresa, um padrão corporativo, etc., que se torna comumente aceito e dominante é frequentemente chamado de “padrão de fato”.		
+De: Wikipedia		
+Dados Estruturados		
+Dados Estruturados referem-se a dados que estão em conformidade com um esquema fixo. Bancos de dados e planilhas relacionais são exemplos de dados estruturados.		
+Vocabulário		
+Um vocabulário é uma coletânea de “termos” para uma determinada finalidade. Os vocabulários podem variar desde os mais simples, tais como os largamente utilizados RDF Schema [RDF-SCHEMA], FOAF [FOAF] e Dublin Core [DCTERMS] até vocabulários complexos, com milhares de termos, como aqueles usados nos cuidados de saúde para descrever sintomas, doenças e tratamentos. Os vocabulários têm um papel importante nos Dados Conectados, especialmente no suporte à integração de dados. O uso deste termo sobrepõe-se à Ontologia.		
+De: Linked Data Glossary		
+		
+10. Dados sobre os Desafios da Web		
+Esta seção não é normativa		
+		
+O diagrama seguinte resume alguns dos principais desafios enfrentados ao publicar ou consumir dados na Web. Estes desafios foram identificados a partir do documento Casos de Uso e Requisitos do DBPW [DWBP-UCR]  e, como apresentado no diagrama, são mencionados por uma ou mais Boas Práticas.  		
+		
+11. Benefícios das Boas Práticas		
+Esta seção não é normativa.		
+		
+A lista abaixo descreve os principais benefícios da aplicação do DBPW. Cada benefício representa uma melhoria na maneira como os conjuntos de dados são disponibilizados na Web.		
+Compreensão: os humanos terão um melhor entendimento sobre a estrutura e o significado dos dados, os metadados e a natureza do conjunto de dados.		
+Processabilidade: as máquinas serão capazes de processar e manipular automaticamente os dados dentro de um conjunto de dados.		
+Encontrabilidade: as máquinas serão capazes de descobrir automaticamente um conjunto de dados ou dados dentro de um conjunto de dados.		
+ReúsoReutilização: aumentarão as possibilidades de reutilização do conjunto de dados por diferentes grupos de consumidores de dados.  		
+Confiabilidade: a confiança que os clientes depositam no conjunto de dados se ampliará.		
+Conectividade: será possível criar conexões entre os recursos de dados (conjuntos de dados e itens de dados).		
+AcessoAcessibilidade: humanos e máquinas serão capazes de acessar dados atualizados de várias maneiras.		
+Interoperabilidade: será mais fácil alcançar um consenso entre publicadores de dados e consumidores.		
+		
+A tabela a seguir relaciona Boas Práticas e Benefícios		
+		
+		
+Boas Práticas e Benefícios		
+		
+Boa Prática		
+Fornecer metadados		
+Fornecer metadados descritivos		
+Fornecer metadados estruturais.		
+Fornecer informações sobre licenciamento de dados		
+Fornecer informações sobre a proveniência dos dados		
+Fornecer informações sobre a qualidade dos dados		
+Fornecer um indicador de versão		
+Fornecer histórico de versionamento		
+Utilizar URIs constantes como identificadores de conjuntos de dados		
+Utilizar URIs constantes como identificadores dentro dos conjuntos de dados		
+Designar URIs para versões e séries de conjuntos de dados 		
+Utilizar formatos de dados padronizados e inteligíveis por máquinas		
+Utilizar representações de dados de localidade neutra		
+Fornecer dados em formatos múltiplos.		
+Reutilizar vocabulários preferencialmente padronizados		
+Escolher o nível correto de formalização 		
+Fornecer download em massa		
+Fornecer subconjuntos para conjuntos de dados extensos		
+Utilizar a negociação de conteúdo para disponibilizar dados em formatos múltiplos		
+Fornecer acesso em tempo real		
+Fornecer dados atualizados.		
+Fornecer uma justificativa para dados não disponíveis		
+Disponibilizar dados por meio de uma API		
+Utilizar padrões da Web como a base para as APIs		
+Fornecer a documentação completa para sua API		
+Evitar modificações que quebrem sua API		
+Preservar os identificadores		
+Avaliar a cobertura do conjunto de dados		
+Coletar feedback de consumidores de dados		
+Disponibilizar feedback		
+Enriquecer dados por meio da geração de novos dados		
+Fornecer apresentações complementares		
+Fornecer feedback ao editor original		
+Seguir os termos de licenciamento		
+Citar a publicação origina		
+Melhores Práticas e Benefícios		
+		
+A figura abaixo demonstra os benefícios que os editores de dados obterão ao optar pela adoção das Boas Práticas.		
+		
+REUTILIZAÇÃO		
+Todas as Boas Práticas		
+		
+ACESSIBILIDADE		
+Fornecer download em massa		
+Fornecer subconjuntos para conjuntos de dados extensos		
+Utilizar a negociação de conteúdo para disponibilizar dados em formatos múltiplos		
+Fornecer acesso em tempo real		
+Fornecer dados atualizados		
+Disponibilizar dados por meio de uma API		
+Utilizar Padrões da Web como a base para as APIs		
+Fornecer apresentações complementares		
+		
+ENCONTRABILIDADE		
+Fornecer metadados		
+Fornecer metadados descritivos		
+Utilizar URIs constantes como identificadores de conjuntos de dados		
+Utilizar URIs constantes como identificadores dentro dos conjuntos de dados		
+Designar URIs para versões e séries de conjuntos de dados		
+Utilizar padrões da Web como a base para as APIs		
+Citar a publicação original		
+		
+PROCESSABILIDADE		
+Fornecer metadados		
+Fornecer metadados estruturais		
+Utilizar formatos de dados padronizados e inteligíveis por máquinas		
+Fornecer dados em formatos múltiplos		
+Reutilizar vocabulários preferencialmente padronizados		
+Fornecer subconjuntos para conjuntos de dados extensos		
+Disponibilizar os dados por meio de uma API		
+Utilizar os padrões da Web como a base para as APIs.		
+Enriquecer dados por meio da geração de novos dados		
+		
+CONFIABILIDADE		
+Fornecer informações de licenciamento de dados		
+Fornecer informações sobre a proveniência dos dados		
+Fornecer informações sobre a qualidade dos dados		
+Fornecer um indicador de versão		
+Fornecer histórico de versão		
+Designar URIs para versões e séries de conjuntos de dados 		
+Reutilizar vocabulários preferencialmente padronizados		
+Fornecer uma justificativa para dados não disponíveis		
+Fornecer a documentação completa para sua API		
+Evitar Modificações que Quebrem sua API		
+Preservar os identificadores		
+Avaliar a cobertura do conjunto de dados		
+Coletar feedback de consumidores de dados		
+Disponibilizar feedback		
+Enriquecer os dados por meio da geração de novos dados		
+Fornecer apresentações complementares		
+Fornecer feedback ao editor original		
+Seguir os termos de licenciamento		
+Citar a publicação original		
+		
+INTEROPERABILITY		
+Utilizar URIs constantes como identificadores de conjuntos de dados		
+Utilizar URIs constantes como identificadores dentro dos conjuntos de dados 		
+Reutilizar vocabulários preferencialmente padronizados		
+Escolher o nível correto de formalização 		
+Disponibilizar dados por meio de uma API		
+Utilizar padrões da Web como a base para as APIs		
+Evitar modificações que quebrem sua API		
+Fornecer feedback ao editor Original		
+		
+CONECTIVIDADE		
+Utilizar URIs constantes como identificadores de conjuntos de dados		
+Utilizar URIs constantes como identificadores dentro dos conjuntos de dados		
+Fornecer subconjuntos para conjuntos de dados extensos		
+Utilizar padrões da Web como a base para as APIs		
+		
+COMPREENSÃO		
+Fornecer metadados		
+Fornecer metadados descritivos		
+Fornecer metadados estruturais		
+Fornecer informações sobre a proveniência dos dados		
+Utilizar representações de dados de localidade neutra		
+Reutilizar vocabulários preferencialmente padronizados		
+Escolher o nível correto de formalização 		
+Coletar feedback de consumidores de dados		
+Enriquecer dados por meio da geração de novos dados		
+Fornecer apresentações complementares		
+		
+12. Requisitos de Casos de Uso x Boas Práticas		
+Este seção não é normativa		
+		
+Requisitos	Boas Práticas	
+R-MetadataAvailable	"Fornecer metadados
+Fornecer metadados descritivos
+Fornecer metadados estruturais
+Fornecer informações sobre a proveniência dos dados
+Utilizar representações de dados de localidade neutra
+Citar a publicação original"	
+R-MetadataDocum	"Fornecer metadados
+Reutilizar vocabulários preferencialmente padronizados"	
+R-MetadataMachineRead	"Fornecer metadados
+Fornecer metadados descritivos
+Fornecer informações de licenciamento de dados"	
+R-MetadataStandardized	"Fornecer metadados descritivos
+Reutilizar vocabulários preferencialmente padronizados"	
+R-LicenseAvailable	"Fornecer informações de licenciamento de dados
+Seguir os termos de licenciamento"	
+R-LicenseLiability	"Fornecer informações de licenciamento de dados
+Seguir os termos de licenciamento"	
+R-ProvAvailable	"Fornecer informações sobre a proveniência dos dados
+Enriquecer dados por meio da geração de novos dados
+Citar a publicação original"	
+R-QualityMetrics	Fornecer informações sobre a qualidade dos dados	
+R-DataMissingIncomplete	Fornecer informações sobre a qualidade dos dados	
+R-QualityOpinions	"Fornecer informações sobre a qualidade dos dados
+Coletar feedback de consumidores de dados
+Disponibilizar feedback
+Fornecer feedback ao editor original"	
+R-DataVersion	"Fornecer um indicador de versão
+Fornecer histórico de versão"	
+R-UniqueIdentifier	"Utilizar URIs constantes como identificadores de conjuntos de dados
+Utilizar URIs constantes como identificadores dentro dos conjuntos de dados
+Designar URIs para versões e séries de conjuntos de dados
+Fornecer subconjuntos para conjuntos de dados extensos
+Utilizar padrões da Web como a base para as APIs"	
+R-Citable	"Utilizar URIs constantes como identificadores e conjuntos de dados
+Designar URIs para versões e séries de conjuntos de dados
+Fornecer subconjuntos para conjuntos de dados extensos
+Citar a publicação original"	
+R-FormatMachineRead	"Utilizar formatos de dados padronizados inteligíveis por máquinas.
+Use locale-neutral data representations
+Utilizar representações de dados neutros no que se refere à localidade
+Utilizar a negociação de conteúdo para fornecer dados que estejam disponíveis em formatos múltiplos
+Enriquecer os dados por meio da geração de novos dados"	
+R-FormatStandardized	Utilizar formatos de dados padronizados e inteligíveis por máquinas	
+R-FormatOpen	Utilizar formatos de dados padronizados e inteligíveis por máquinas	
+R-FormatLocalize	Utilizar representações de dados de localidade neutra	
+R-GeographicalContext	Utilizar representações de dados de localidade neutra	
+R-FormatMultiple	"Fornecer dados em formatos múltiplos
+Utilizar a negociação de conteúdo para disponibilizar dados em formatos múltiplos"	
+R-QualityComparable	"
+Reutilizar vocabulários preferencialmente padronizados
+Escolher o nível correto de formalização "	
+R-VocabOpen	Reutilizar vocabulários preferencialmente padronizados	
+R-VocabReference	"Reutilizar vocabulários preferencialmente padronizados
+Escolher o nível correto de formalização 
+Avaliar a cobertura do conjunto de dados"	
+R-AccessBulk	Fornecer download em massa	
+R-GranularityLevels	Fornecer subconjuntos para conjuntos de dados extensos	
+R-AccessRealTime	"Fornecer subconjuntos para conjuntos de dados extensos
+Fornecer acesso em tempo real
+Disponibilizar dados por meio de uma API"	
+R-AccessUpToDate	"Fornecer dados atualizados
+Disponibilizar dados por meio de uma API"	
+R-AccessLevel	"Fornecer uma justificativa para dados não disponíveis
+Preservar os identificadores"	
+R-SensitivePrivacy	Fornecer uma justificativa para dados não disponíveis	
+R-SensitiveSecurity	Fornecer uma justificativa para dados não disponíveis	
+R-APIDocumented	"Utilizar padrões da Web como a base para as APIs
+Fornecer a documentação completa para sua API
+Evitar modificações que quebrem sua API"	
+R-PersistentIdentification	"Evitar modificações que quebrem sua API
+Preservar os identificadores"	
+R-UsageFeedback	"Coletar feedback de consumidores de dados
+Disponibilizar feedback
+Fornecer feedback ao editor original"	
+R-DataEnrichment	"Enriquecer dados por meio da geração de novos dados
+Fornecer apresentações complementares."	
+R-TrackDataUsage	"
+Fornecer feedback ao editor original
+Citar a publicação original"	
+		
+A. Agradecimentos		
+Os editores agradecem as contribuições feitas a este documento por todos os membros do grupo de trabalho. Especialmente o grande esforço realizado por Annette Greiner e os subsídios recebidos de Antoine Isaac, Eric Stephan e Phil Archer.		
+Este documento beneficiou-se da colaboração de muitos membros do Grupo de Trabalho em Dados Espaciais na Web. Devemos agradecimentos especiais aos colegas Andrea Perego, Dan Brickley, Linda van den Brink e Jeremy Tandy. Os editores gostariam também de agradecer pelos comentários recebidos de Addison Phillips, Adriano Machado, Adriano Veloso, Andreas Kuckartz, Augusto Herrmann, Bart van Leeuwen, Christophe Gueret, Erik Wilde, Giancarlo Guizzardi, Gisele Pappa, Gregg Kellogg, Herbert Van de Sompel, Ivan Herman, Leigh Dodds, Lewis John McGibbney, Makx Dekkers, Manuel Tomas Carrasco-Benitez, Maurino Andrea, Michel Dumontier, Nandana Mihindukulasooriya, Nathalia Sautchuk Patrício, Peter Winstanley, Renato Iannella, Steven Adler, Vagner Diniz, e Wagner Meira.		
+Os editores também querem agradecer os presidentes deste Grupo de Trabalho: Deirdre Lee, Hadley Beeman, Yaso Córdova e o contato administrativo Phil Archer.		
+		
+B.  Histórico de Modificações		
+Modificações efetuadas desde a versão anterior:		
+A introdução foi reorganizada e levemente ampliada para clarificar que o DBPW é um documento geral complementado de forma mais detalhada em áreas mais específicas.		
+Atribuições adicionais foram adicionadas aos diagramas SVG para aumentar sua acessibilidade.		
+Nomes descritivos foram adicionados à tabela de nomes de espaço.		
+		
+O nome usado no exemplo em execução, John, foi trocado para Adrian por ser mais neutro no que se refere a gênero.		
+		
+C. Referências		
+C.1 Referências Informativas		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
